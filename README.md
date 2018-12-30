@@ -1,1 +1,4 @@
-# 52Heartz.github.io的Hexo网站原始文件
+# Files for 52Heartz's blog
+
+Welcome to my blog at [https://52heartz.top](https://52heartz.top)
+
