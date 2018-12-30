@@ -15,7 +15,7 @@ timezone: Asia/Shanghai
 url: http://52heartz.top
 root: /
 #permalink: :year/:month/:day/:title/
-permalink: articles/:urlname
+permalink: articles/:urlname/
 permalink_defaults:
 
 # 自动生成sitemap
