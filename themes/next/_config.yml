@@ -846,7 +846,7 @@ lazyload: false
 
 # Progress bar in the top during page loading.
 # Dependencies: https://github.com/theme-next/theme-next-pace
-pace: false
+pace: true
 # Themes list:
 #pace-theme-big-counter
 #pace-theme-bounce
@@ -861,6 +861,7 @@ pace: false
 #pace-theme-loading-bar
 #pace-theme-mac-osx
 #pace-theme-minimal
+#pace-theme-flat-top
 # For example
 # pace_theme: pace-theme-center-simple
 pace_theme: pace-theme-minimal
