@@ -8,14 +8,18 @@ subtitle:
 description:
 author: 52Heartz
 language: zh-CN
-timezone:	Asia/Shanghai
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://52heartz.top
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
+
+# 自动生成sitemap
+sitemap:
+  path: sitemap.xml
 
 # Directory
 source_dir: source
@@ -72,11 +76,11 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: pure
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/52Heartz/52Heartz.github.io.git
+  repo: git@github.com:52Heartz/52Heartz.github.io.git
   branch: master

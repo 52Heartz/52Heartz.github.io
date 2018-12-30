@@ -1,0 +1,468 @@
+---
+title: SQL基础
+date: 2018-12-27 23:46:55
+categories:
+- 技术
+tags:
+- Java
+---
+
+# 基本概念的区分
+
+- 数据库 和 数据库管理系统
+
+人们通常用数据库这个术语来代表他们使用的数据库软件，这是不正确的，也因此产生了许多混淆。确切地说，数据库软件应称为数据库管理系统（ DBMS）。数据库是通过 DBMS 创建和操纵的容器，而具体它究竟是什么，形式如何，各种数据库都不一样。 
+
+- 模式
+
+表具有一些特性，这些特性定义了数据在表中如何存储，包含存储什么样的数据，数据如何分解，各部分信息如何命名等信息。描述表的这组信息就是所谓的模式（ schema），模式可以用来描述数据库中特定的表，也可以用来描述整个数据库（和其中表的关系）。 
+
+简而言之，模式就是关于数据库和表的布局及特性的信息。
+
+- 主键（Primary Key）
+
+主键的要求：
+
+1. 任意两行都不具有相同的主键值。
+2. 主键不允许为空。
+3. 主键列中的值不允许修改或更新。
+4. 主键值不能重用（如果某行从表中删除，它的主键不能赋给以后的新行）
+
+主键可以定义在表的一列上，也可以一起使用多个列合在一起作为主键。使用多个列作为主键时，只要保证不同记录的主键不完全相同即可，可以有部分值相同。
+
+
+
+# 检索数据
+
+## SELECT语句
+
+## 检索单个列
+
+```sql
+SELECT prod_name
+FROM Products;
+```
+
+- SQL语句的分句
+
+必须以分号 `；` 分隔。对于单条SQL语句，有些DBMS允许不加分号，但是有些不允许，建议总是加上分号为好。
+
+- SQL不区分大小写
+
+SQL不区分大小写，所以 `SELECT` 和 `select` 和 `Select` 效果是一样的。
+
+- SQL语句本身不区分大小写，但是数据库名和表名是可能区分大小写的
+
+因为SQL本身只是一个语言，是一个标准，所以SQL本身不区分大小写，但是数据库名和表名是有可能区分大小写的，不同的数据库厂商的设置不一样。
+
+- SQL会自动忽略多余的空格
+
+所以以下三种写法是一样的：
+
+```sql
+SELECT prod_name
+FROM Products;
+
+SELECT prod_name FROM Products;
+
+SELECT
+prod_name
+FROM
+Products;
+```
+
+合理分行可以改善程序的可读性。
+
+
+
+## 检索多个列
+
+示例：
+
+```sql
+SELECT prod_id, prod_name, prod_price
+FROM Products;
+```
+
+选择多个列时，一定要在列名之间加上逗号，但最后一个列名后不加，如果最后一个列名后加了逗号将出现错误。
+
+
+
+## 检索所有列
+
+示例：
+
+```sql
+SELECT *
+FROM Products;
+```
+
+在实际的应用中，如果不是必须，不要检索所有列，因为这样会降低程序的检索效率。
+
+检索所有列的另外一个用处是，可以检索出你不知道名字的列。
+
+
+
+## 检索结果去重
+
+示例：
+
+```sql
+SELECT DISTINCT vend_id
+FROM Products;
+```
+
+这样，当检索结果中有**完全相同的两行**的时候，就会去掉重复的。
+
+此原则也适用于同时选择多列。
+
+示例：
+
+```sql
+SELECT DISTINCT prod_id, vend_id， prod_price
+FROM Products;
+```
+
+也就是说 `DINSTINCT` 关键字同时作用于三行。
+
+
+
+## 检索结果中只选取部分行
+
+不同的数据库管理系统的实现是不一样的。
+
+- 适用于MySQL、MariaDB、PostgreSQL或者SQLite写法
+
+```sql
+-- 选取不超过5行的数据
+SELECT prod_name
+FROM Products
+LIMIT 5;
+```
+
+可以使用 `OFFSET` 指定起始位置。需要注意的是，数据库中的行是从第0行开始的。
+
+```sql
+-- 返回从第3行起的4行数据
+SELECT prod_name
+FROM Products
+LIMIT 4 OFFSET 3;
+```
+
+在MySQL和MariaDB中，`LIMIT 4 OFFSET 3` 语句可以进行简化，写成 `LIMIT 3,4`。需要注意的是逗号前边的对应的是 `OFFSET`，逗号后边的数对应于 `LIMIT`。
+
+- 适用于Oracle的写法
+
+```sql
+-- 选取前5行
+SELECT prod_name
+FROM Products
+WHERE ROWNUM <= 5;
+```
+
+
+
+## 注释
+
+三种注释方式
+
+```sql
+-- 注释方式1
+
+/* 注释方式2
+   注释方式2 */
+
+# 注释方式3 可能有些产品不支持
+```
+
+
+
+## 排序检索数据
+
+使用 `ORDER BY` 子句进行排序。默认采用升序排列。
+
+示例：
+
+```sql
+SELECT prod_name
+FROM Products
+ORDER BY prod_name;
+```
+
+关于MySQL的 `ORDER BY` 子句使用方法的官方文档：
+
+[MySQL :: MySQL 8.0 Reference Manual :: 3.3.4.4 Sorting Rows](https://dev.mysql.com/doc/refman/8.0/en/sorting-rows.html)
+
+- 另外，`ORDER BY` 子句必须是一条语句的最后一条子句，如果它不是最后的子句，将会出现错误信息。
+
+- 可以通过没有选择的列进行排序
+
+一般情况下我们都是根据 `SELECT` 选择的列中的列进行排序，但是也可以使用没有选择的列进行排序。
+
+
+
+## 多级排序
+
+可以对两个列进行排序。
+
+示例：
+
+```sql
+SELECT prod_id, prod_price, prod_name
+FROM Products
+ORDER BY prod_price, prod_name;
+```
+
+先对 `prod_price` 进行排序，如果 `prod_price` 中出现了两个相同的值的话，就会通过 `pro_name` 进行排序。如果 `prod_price` 中的值都是唯一的，那么就不会按 `prod_name` 排序。
+
+
+
+## 在 `ORDER BY` 中使用列的相对位置进行排序
+
+示例：
+
+```sql
+SELECT prod_id, prod_price, prod_name
+FROM Products
+ORDER BY 2, 3;
+```
+
+这表示依次使用 `prod_price` 和 `prod_name` 进行排序。
+
+虽然这种方式可行，但是不建议使用这种方式。因为，如果对SELECT中选择的列进行了修改而忘记了对ORDER BY 子句进行修改的话，那么可能出错。
+
+
+
+## 降序排列
+
+在 `ORDER BY` 子句中某列名后面加上 `DESC`，表示针对此列进行降序排列。也就是说，`DESC` 只作用于它前边紧邻的一个列名。
+
+示例：
+
+```sql
+SELECT prod_id, prod_price, prod_name
+FROM Products
+ORDER BY prod_price DESC, prod_name;
+```
+
+
+
+## 升序排列和降序排列具体是怎么排的呢？
+
+在对文本性数据进行排序时， A 与 a 相同吗？ a 位于 B 之前，还是 Z之后？这些问题不是理论问题，其答案取决于数据库的设置方式。
+
+在字典（ dictionary）排序顺序中， A 被视为与 a 相同，这是大多数数据库管理系统的默认行为。但是，许多 DBMS 允许数据库管理员在需要时改变这种行为（如果你的数据库包含大量外语字符，可能必须这样做）。
+
+这里的关键问题是，如果确实需要改变这种排序顺序，用简单的 ORDERBY 子句可能做不到。你必须请求数据库管理员的帮助。 
+
+
+
+# 过滤数据
+
+## 使用 `WHERE` 子句过滤数据
+
+示例：
+
+```sql
+SELECT prod_name, prod_price
+FROM Products
+WHERE prod_price = 3.49;
+```
+
+这条语句从 `products` 表中检索两个列，但不返回所有行，只返回 `prod_price` 值为 3.49 的行。
+
+
+
+## SQL过滤与应用过滤
+
+数据也可以在应用层过滤，就是说SQL检索出超过实际需要的数据，发送给客户端，然后由客户端程序再进行筛选。这样做是可行的，但是有几个缺点：
+
+1. 浪费带宽
+2. 创建的应用可能不具备可伸缩性
+3. 客户端性能问题
+
+
+
+## `WHERE` 子句的操作符
+
+| 操作符  | 说明               |
+| ------- | ------------------ |
+| =       | 等于               |
+| <>      | 不等于             |
+| !=      | 不等于             |
+| <       | 小于               |
+| <=      | 小于等于           |
+| !<      | 不小于             |
+| >       | 大于               |
+| \>=     | 大于等于           |
+| !>      | 不大于             |
+| BETWEEN | 在指定的两个值之间 |
+| IS NULL | 为NULL值           |
+
+- 其中有些的效果是一样的，比如 `<>` 和 `!=`，`!<` 和 `>=`，但是不同的数据库厂商的设置不一定相同，需要参阅相关的文档。比如 Microsoft Access 支持 `<>` 而不支持 `!=`。
+
+
+
+## 对比数值和对比字符串的区别
+
+示例：
+
+```sql
+SELECT vend_id, prod_name
+FROM Products
+WHERE vend_id <> 'DLL01';
+```
+
+可以看到，WHERE子句中的条件括在了单引号中。单引号用来限定字符串。如果将将值与字符串类型的列进行比较，就需要限定引号。如果用来与数值进行比较的值不用引号。
+
+
+
+## `BETWEEN` 运算符的使用
+
+示例：
+
+```sql
+SELECT prod_name, prod_price
+FROM Products
+WHERE prod_price BETWEEN 5 AND 10;
+```
+
+
+
+## 空值检查
+
+确定值是否为 NULL，不能简单地检查是否= NULL。 SELECT 语句有一个特殊的 WHERE 子句，可用来检查具有 NULL 值的列。这个 WHERE 子句就是 `IS NULL` 子句。
+
+示例：
+
+```sql
+SELECT prod_name
+FROM Products
+WHERE prod_price IS NULL;
+```
+
+
+
+## 不同DBMS特有的操作符
+
+许多 DBMS 扩展了标准的操作符集，提供了更高级的过滤选择。更多信息请参阅相应的 DBMS 文档。 
+
+
+
+## NULL 和非匹配
+
+当你使用 `!=` 运算符过滤不包含指定值的所有行时，你可能希望值为NULL的行也显示出来，但是实际上值为NULL的行并不会显示出来，因为 `unknown` 有特殊的含义，数据库不知道它们是否匹配。
+
+
+
+# 高级数据过滤
+
+前边的 `WHERE` 子句都只有一个条件，可以使用 `AND` 操作符在一个 `WHERE` 子句中使用多个条件。
+
+## `AND` 操作符
+
+使用 `AND` 操作度之后，会筛选出同时满足所有条件的数据。
+
+示例：
+
+```sql
+SELECT prod_id, prod_price, prod_name
+FROM Products
+WHERE vend_id = 'DLL01' AND prod_price <= 4;
+```
+
+可以有多个过滤条件，如果有多个过滤条件，每两个条件之间都要加上 `AND` 关键字。
+
+## `OR` 操作符
+
+使用 `OR` 操作符之后，一条数据只要满足任意一个条件就会被过滤出来。
+
+示例：
+
+```sql
+SELECT prod_name, prod_price
+FROM Products
+WHERE vend_id = 'DLL01' OR vend_id = ‘BRS01’;
+```
+
+同样，使用 `OR` 操作符也可以有多个过滤条件。
+
+## 操作符优先级
+
+考虑以下代码：
+
+```sql
+SELECT prod_name, prod_price
+FROM Products
+WHERE vend_id = 'DLL01' OR vend_id = 'BRS01'
+AND prod_price >= 10;
+```
+
+`AND` 操作符在求值中优先级更高，所以这段代码表示过滤出“`ven_id` 为 `DLL01` 的数据，或者 `ven_id` 为 `BRS01` 且 `prod_price` 大于等于 `10` 的数据。”
+
+如果想要表达的是下面这个意思：
+
+过滤出 `ven_id` 为 `DLL01` 或者 `BRS01`，而且 `prod_price` 都在 `10` 以上的数据。
+
+那么就要把代码改成这样：
+
+```sql
+SELECT prod_name, prod_price
+FROM Products
+WHERE (vend_id = 'DLL01' OR vend_id = 'BRS01')
+AND prod_price >= 10;
+```
+
+## `IN` 操作符
+
+`IN` 操作符用来指定条件范围，范围中的每个条件都可以进行匹配。
+
+示例：
+
+```sql
+SELECT prod_name, prod_price
+FROM Products
+WHERE vend_id IN ( 'DLL01', 'BRS01' )
+ORDER BY prod_name;
+```
+
+其实 `IN` 操作符和 `OR` 操作符可以执行相同的功能。不过 `IN` 操作符有以下几个优点：
+
+- 相比于使用 `OR` 操作符连接多个条件，`IN` 操作符的语句更清晰简洁
+- `IN` 操作符一般比使用多个 `OR` 操作符执行得更快
+- `IN` 后面可以包含其他 `SELECT` 语句，能够更动态地建立 `WHERE` 子句。
+
+## `NOT` 操作符
+
+`NOT` 操作符一般放在条件的前边，用来否定后面的条件。
+
+这段代码
+
+```sql
+SELECT prod_name
+FROM Products
+WHERE NOT vend_id = 'DLL01'
+ORDER BY prod_name;
+```
+
+和这段代码
+
+```sql
+SELECT prod_name
+FROM Products
+WHERE vend_id <> 'DLL01'
+ORDER BY prod_name;
+```
+
+表达同样的意思。
+
+> 补充说明：`MariaDB` 中的 `NOT`
+>
+> `MariaDB` 允许使用 `NOT` 子句否定 `IN`、`BETWEEN`、`EXISTS` 子句。大多数DBMS允许使用 `NOT` 否定任何条件。
+
+
+
+# 使用通配符进行过滤
+
+## `LIKE` 操作符
+
