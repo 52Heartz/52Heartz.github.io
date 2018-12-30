@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next pisces" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="基本概念的区分 数据库 和 数据库管理系统  人们通常用数据库这个术语来代表他们使用的数据库软件，这是不正确的，也因此产生了许多混淆。确切地说，数据库软件应称为数据库管理系统（ DBMS）。数据库是通过 DBMS 创建和操纵的容器，而具体它究竟是什么，形式如何，各种数据库都不一样。   模式  表具有一些特性，这些特性定义了数据在表中如何存储，包含存储什么样的数据，数据如何分解，各部分信息如何命名">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL基础">
+<meta property="og:url" content="http://52heartz.top/2018/12/27/SQL基础知识/index.html">
+<meta property="og:site_name" content="52Heartz&#39;s Blog">
+<meta property="og:description" content="基本概念的区分 数据库 和 数据库管理系统  人们通常用数据库这个术语来代表他们使用的数据库软件，这是不正确的，也因此产生了许多混淆。确切地说，数据库软件应称为数据库管理系统（ DBMS）。数据库是通过 DBMS 创建和操纵的容器，而具体它究竟是什么，形式如何，各种数据库都不一样。   模式  表具有一些特性，这些特性定义了数据在表中如何存储，包含存储什么样的数据，数据如何分解，各部分信息如何命名">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-30T00:59:50.951Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL基础">
+<meta name="twitter:description" content="基本概念的区分 数据库 和 数据库管理系统  人们通常用数据库这个术语来代表他们使用的数据库软件，这是不正确的，也因此产生了许多混淆。确切地说，数据库软件应称为数据库管理系统（ DBMS）。数据库是通过 DBMS 创建和操纵的容器，而具体它究竟是什么，形式如何，各种数据库都不一样。   模式  表具有一些特性，这些特性定义了数据在表中如何存储，包含存储什么样的数据，数据如何分解，各部分信息如何命名">
+
+
+
+
+
+
+  <link rel="canonical" href="http://52heartz.top/2018/12/27/SQL基础知识/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>SQL基础 | 52Heartz's Blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?72cebe754e7b9660bb059171b12ccc2c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">52Heartz's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />所有文章</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'AmxvyHhqXNvSDTVJw4RP','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://52heartz.top/2018/12/27/SQL基础知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="52Heartz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="52Heartz's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SQL基础
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-27 23:46:55" itemprop="dateCreated datePublished" datetime="2018-12-27T23:46:55+08:00">2018-12-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-30 08:59:50" itemprop="dateModified" datetime="2018-12-30T08:59:50+08:00">2018-12-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="基本概念的区分"><a href="#基本概念的区分" class="headerlink" title="基本概念的区分"></a>基本概念的区分</h1><ul>
+<li>数据库 和 数据库管理系统</li>
+</ul>
+<p>人们通常用数据库这个术语来代表他们使用的数据库软件，这是不正确的，也因此产生了许多混淆。确切地说，数据库软件应称为数据库管理系统（ DBMS）。数据库是通过 DBMS 创建和操纵的容器，而具体它究竟是什么，形式如何，各种数据库都不一样。 </p>
+<ul>
+<li>模式</li>
+</ul>
+<p>表具有一些特性，这些特性定义了数据在表中如何存储，包含存储什么样的数据，数据如何分解，各部分信息如何命名等信息。描述表的这组信息就是所谓的模式（ schema），模式可以用来描述数据库中特定的表，也可以用来描述整个数据库（和其中表的关系）。 </p>
+<p>简而言之，模式就是关于数据库和表的布局及特性的信息。</p>
+<ul>
+<li>主键（Primary Key）</li>
+</ul>
+<p>主键的要求：</p>
+<ol>
+<li>任意两行都不具有相同的主键值。</li>
+<li>主键不允许为空。</li>
+<li>主键列中的值不允许修改或更新。</li>
+<li>主键值不能重用（如果某行从表中删除，它的主键不能赋给以后的新行）</li>
+</ol>
+<p>主键可以定义在表的一列上，也可以一起使用多个列合在一起作为主键。使用多个列作为主键时，只要保证不同记录的主键不完全相同即可，可以有部分值相同。</p>
+<h1 id="检索数据"><a href="#检索数据" class="headerlink" title="检索数据"></a>检索数据</h1><h2 id="SELECT语句"><a href="#SELECT语句" class="headerlink" title="SELECT语句"></a>SELECT语句</h2><h2 id="检索单个列"><a href="#检索单个列" class="headerlink" title="检索单个列"></a>检索单个列</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> prod_name</div><div class="line"><span class="keyword">FROM</span> Products;</div></pre></td></tr></table></figure>
+<ul>
+<li>SQL语句的分句</li>
+</ul>
+<p>必须以分号 <code>；</code> 分隔。对于单条SQL语句，有些DBMS允许不加分号，但是有些不允许，建议总是加上分号为好。</p>
+<ul>
+<li>SQL不区分大小写</li>
+</ul>
+<p>SQL不区分大小写，所以 <code>SELECT</code> 和 <code>select</code> 和 <code>Select</code> 效果是一样的。</p>
+<ul>
+<li>SQL语句本身不区分大小写，但是数据库名和表名是可能区分大小写的</li>
+</ul>
+<p>因为SQL本身只是一个语言，是一个标准，所以SQL本身不区分大小写，但是数据库名和表名是有可能区分大小写的，不同的数据库厂商的设置不一样。</p>
+<ul>
+<li>SQL会自动忽略多余的空格</li>
+</ul>
+<p>所以以下三种写法是一样的：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> prod_name</div><div class="line"><span class="keyword">FROM</span> Products;</div><div class="line"></div><div class="line"><span class="keyword">SELECT</span> prod_name <span class="keyword">FROM</span> Products;</div><div class="line"></div><div class="line"><span class="keyword">SELECT</span></div><div class="line">prod_name</div><div class="line"><span class="keyword">FROM</span></div><div class="line">Products;</div></pre></td></tr></table></figure>
+<p>合理分行可以改善程序的可读性。</p>
+<h2 id="检索多个列"><a href="#检索多个列" class="headerlink" title="检索多个列"></a>检索多个列</h2><p>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> prod_id, prod_name, prod_price</div><div class="line"><span class="keyword">FROM</span> Products;</div></pre></td></tr></table></figure>
+<p>选择多个列时，一定要在列名之间加上逗号，但最后一个列名后不加，如果最后一个列名后加了逗号将出现错误。</p>
+<h2 id="检索所有列"><a href="#检索所有列" class="headerlink" title="检索所有列"></a>检索所有列</h2><p>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> *</div><div class="line"><span class="keyword">FROM</span> Products;</div></pre></td></tr></table></figure>
+<p>在实际的应用中，如果不是必须，不要检索所有列，因为这样会降低程序的检索效率。</p>
+<p>检索所有列的另外一个用处是，可以检索出你不知道名字的列。</p>
+<h2 id="检索结果去重"><a href="#检索结果去重" class="headerlink" title="检索结果去重"></a>检索结果去重</h2><p>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> vend_id</div><div class="line"><span class="keyword">FROM</span> Products;</div></pre></td></tr></table></figure>
+<p>这样，当检索结果中有<strong>完全相同的两行</strong>的时候，就会去掉重复的。</p>
+<p>此原则也适用于同时选择多列。</p>
+<p>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> prod_id, vend_id， prod_price</div><div class="line"><span class="keyword">FROM</span> Products;</div></pre></td></tr></table></figure>
+<p>也就是说 <code>DINSTINCT</code> 关键字同时作用于三行。</p>
+<h2 id="检索结果中只选取部分行"><a href="#检索结果中只选取部分行" class="headerlink" title="检索结果中只选取部分行"></a>检索结果中只选取部分行</h2><p>不同的数据库管理系统的实现是不一样的。</p>
+<ul>
+<li>适用于MySQL、MariaDB、PostgreSQL或者SQLite写法</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 选取不超过5行的数据</span></div><div class="line"><span class="keyword">SELECT</span> prod_name</div><div class="line"><span class="keyword">FROM</span> Products</div><div class="line"><span class="keyword">LIMIT</span> <span class="number">5</span>;</div></pre></td></tr></table></figure>
+<p>可以使用 <code>OFFSET</code> 指定起始位置。需要注意的是，数据库中的行是从第0行开始的。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 返回从第3行起的4行数据</span></div><div class="line"><span class="keyword">SELECT</span> prod_name</div><div class="line"><span class="keyword">FROM</span> Products</div><div class="line"><span class="keyword">LIMIT</span> <span class="number">4</span> <span class="keyword">OFFSET</span> <span class="number">3</span>;</div></pre></td></tr></table></figure>
+<p>在MySQL和MariaDB中，<code>LIMIT 4 OFFSET 3</code> 语句可以进行简化，写成 <code>LIMIT 3,4</code>。需要注意的是逗号前边的对应的是 <code>OFFSET</code>，逗号后边的数对应于 <code>LIMIT</code>。</p>
+<ul>
+<li>适用于Oracle的写法</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 选取前5行</span></div><div class="line"><span class="keyword">SELECT</span> prod_name</div><div class="line"><span class="keyword">FROM</span> Products</div><div class="line"><span class="keyword">WHERE</span> <span class="keyword">ROWNUM</span> &lt;= <span class="number">5</span>;</div></pre></td></tr></table></figure>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>三种注释方式</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">-- 注释方式1</div><div class="line"></div><div class="line">/* 注释方式2</div><div class="line">   注释方式2 */</div><div class="line"></div><div class="line"># 注释方式3 可能有些产品不支持</div></pre></td></tr></table></figure>
+<h2 id="排序检索数据"><a href="#排序检索数据" class="headerlink" title="排序检索数据"></a>排序检索数据</h2><p>使用 <code>ORDER BY</code> 子句进行排序。默认采用升序排列。</p>
+<p>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> prod_name</div><div class="line"><span class="keyword">FROM</span> Products</div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> prod_name;</div></pre></td></tr></table></figure>
+<p>关于MySQL的 <code>ORDER BY</code> 子句使用方法的官方文档：</p>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/sorting-rows.html" target="_blank" rel="external">MySQL :: MySQL 8.0 Reference Manual :: 3.3.4.4 Sorting Rows</a></p>
+<ul>
+<li><p>另外，<code>ORDER BY</code> 子句必须是一条语句的最后一条子句，如果它不是最后的子句，将会出现错误信息。</p>
+</li>
+<li><p>可以通过没有选择的列进行排序</p>
+</li>
+</ul>
+<p>一般情况下我们都是根据 <code>SELECT</code> 选择的列中的列进行排序，但是也可以使用没有选择的列进行排序。</p>
+<h2 id="多级排序"><a href="#多级排序" class="headerlink" title="多级排序"></a>多级排序</h2><p>可以对两个列进行排序。</p>
+<p>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> prod_id, prod_price, prod_name</div><div class="line"><span class="keyword">FROM</span> Products</div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> prod_price, prod_name;</div></pre></td></tr></table></figure>
+<p>先对 <code>prod_price</code> 进行排序，如果 <code>prod_price</code> 中出现了两个相同的值的话，就会通过 <code>pro_name</code> 进行排序。如果 <code>prod_price</code> 中的值都是唯一的，那么就不会按 <code>prod_name</code> 排序。</p>
+<h2 id="在-ORDER-BY-中使用列的相对位置进行排序"><a href="#在-ORDER-BY-中使用列的相对位置进行排序" class="headerlink" title="在 ORDER BY 中使用列的相对位置进行排序"></a>在 <code>ORDER BY</code> 中使用列的相对位置进行排序</h2><p>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> prod_id, prod_price, prod_name</div><div class="line"><span class="keyword">FROM</span> Products</div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">2</span>, <span class="number">3</span>;</div></pre></td></tr></table></figure>
+<p>这表示依次使用 <code>prod_price</code> 和 <code>prod_name</code> 进行排序。</p>
+<p>虽然这种方式可行，但是不建议使用这种方式。因为，如果对SELECT中选择的列进行了修改而忘记了对ORDER BY 子句进行修改的话，那么可能出错。</p>
+<h2 id="降序排列"><a href="#降序排列" class="headerlink" title="降序排列"></a>降序排列</h2><p>在 <code>ORDER BY</code> 子句中某列名后面加上 <code>DESC</code>，表示针对此列进行降序排列。也就是说，<code>DESC</code> 只作用于它前边紧邻的一个列名。</p>
+<p>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> prod_id, prod_price, prod_name</div><div class="line"><span class="keyword">FROM</span> Products</div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> prod_price <span class="keyword">DESC</span>, prod_name;</div></pre></td></tr></table></figure>
+<h2 id="升序排列和降序排列具体是怎么排的呢？"><a href="#升序排列和降序排列具体是怎么排的呢？" class="headerlink" title="升序排列和降序排列具体是怎么排的呢？"></a>升序排列和降序排列具体是怎么排的呢？</h2><p>在对文本性数据进行排序时， A 与 a 相同吗？ a 位于 B 之前，还是 Z之后？这些问题不是理论问题，其答案取决于数据库的设置方式。</p>
+<p>在字典（ dictionary）排序顺序中， A 被视为与 a 相同，这是大多数数据库管理系统的默认行为。但是，许多 DBMS 允许数据库管理员在需要时改变这种行为（如果你的数据库包含大量外语字符，可能必须这样做）。</p>
+<p>这里的关键问题是，如果确实需要改变这种排序顺序，用简单的 ORDERBY 子句可能做不到。你必须请求数据库管理员的帮助。 </p>
+<h1 id="过滤数据"><a href="#过滤数据" class="headerlink" title="过滤数据"></a>过滤数据</h1><h2 id="使用-WHERE-子句过滤数据"><a href="#使用-WHERE-子句过滤数据" class="headerlink" title="使用 WHERE 子句过滤数据"></a>使用 <code>WHERE</code> 子句过滤数据</h2><p>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> prod_name, prod_price</div><div class="line"><span class="keyword">FROM</span> Products</div><div class="line"><span class="keyword">WHERE</span> prod_price = <span class="number">3.49</span>;</div></pre></td></tr></table></figure>
+<p>这条语句从 <code>products</code> 表中检索两个列，但不返回所有行，只返回 <code>prod_price</code> 值为 3.49 的行。</p>
+<h2 id="SQL过滤与应用过滤"><a href="#SQL过滤与应用过滤" class="headerlink" title="SQL过滤与应用过滤"></a>SQL过滤与应用过滤</h2><p>数据也可以在应用层过滤，就是说SQL检索出超过实际需要的数据，发送给客户端，然后由客户端程序再进行筛选。这样做是可行的，但是有几个缺点：</p>
+<ol>
+<li>浪费带宽</li>
+<li>创建的应用可能不具备可伸缩性</li>
+<li>客户端性能问题</li>
+</ol>
+<h2 id="WHERE-子句的操作符"><a href="#WHERE-子句的操作符" class="headerlink" title="WHERE 子句的操作符"></a><code>WHERE</code> 子句的操作符</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>=</td>
+<td>等于</td>
+</tr>
+<tr>
+<td>&lt;&gt;</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>小于等于</td>
+</tr>
+<tr>
+<td>!&lt;</td>
+<td>不小于</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大于</td>
+</tr>
+<tr>
+<td>>=</td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td>!&gt;</td>
+<td>不大于</td>
+</tr>
+<tr>
+<td>BETWEEN</td>
+<td>在指定的两个值之间</td>
+</tr>
+<tr>
+<td>IS NULL</td>
+<td>为NULL值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>其中有些的效果是一样的，比如 <code>&lt;&gt;</code> 和 <code>!=</code>，<code>!&lt;</code> 和 <code>&gt;=</code>，但是不同的数据库厂商的设置不一定相同，需要参阅相关的文档。比如 Microsoft Access 支持 <code>&lt;&gt;</code> 而不支持 <code>!=</code>。</li>
+</ul>
+<h2 id="对比数值和对比字符串的区别"><a href="#对比数值和对比字符串的区别" class="headerlink" title="对比数值和对比字符串的区别"></a>对比数值和对比字符串的区别</h2><p>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> vend_id, prod_name</div><div class="line"><span class="keyword">FROM</span> Products</div><div class="line"><span class="keyword">WHERE</span> vend_id &lt;&gt; <span class="string">'DLL01'</span>;</div></pre></td></tr></table></figure>
+<p>可以看到，WHERE子句中的条件括在了单引号中。单引号用来限定字符串。如果将将值与字符串类型的列进行比较，就需要限定引号。如果用来与数值进行比较的值不用引号。</p>
+<h2 id="BETWEEN-运算符的使用"><a href="#BETWEEN-运算符的使用" class="headerlink" title="BETWEEN 运算符的使用"></a><code>BETWEEN</code> 运算符的使用</h2><p>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> prod_name, prod_price</div><div class="line"><span class="keyword">FROM</span> Products</div><div class="line"><span class="keyword">WHERE</span> prod_price <span class="keyword">BETWEEN</span> <span class="number">5</span> <span class="keyword">AND</span> <span class="number">10</span>;</div></pre></td></tr></table></figure>
+<h2 id="空值检查"><a href="#空值检查" class="headerlink" title="空值检查"></a>空值检查</h2><p>确定值是否为 NULL，不能简单地检查是否= NULL。 SELECT 语句有一个特殊的 WHERE 子句，可用来检查具有 NULL 值的列。这个 WHERE 子句就是 <code>IS NULL</code> 子句。</p>
+<p>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> prod_name</div><div class="line"><span class="keyword">FROM</span> Products</div><div class="line"><span class="keyword">WHERE</span> prod_price <span class="keyword">IS</span> <span class="literal">NULL</span>;</div></pre></td></tr></table></figure>
+<h2 id="不同DBMS特有的操作符"><a href="#不同DBMS特有的操作符" class="headerlink" title="不同DBMS特有的操作符"></a>不同DBMS特有的操作符</h2><p>许多 DBMS 扩展了标准的操作符集，提供了更高级的过滤选择。更多信息请参阅相应的 DBMS 文档。 </p>
+<h2 id="NULL-和非匹配"><a href="#NULL-和非匹配" class="headerlink" title="NULL 和非匹配"></a>NULL 和非匹配</h2><p>当你使用 <code>!=</code> 运算符过滤不包含指定值的所有行时，你可能希望值为NULL的行也显示出来，但是实际上值为NULL的行并不会显示出来，因为 <code>unknown</code> 有特殊的含义，数据库不知道它们是否匹配。</p>
+<h1 id="高级数据过滤"><a href="#高级数据过滤" class="headerlink" title="高级数据过滤"></a>高级数据过滤</h1><p>前边的 <code>WHERE</code> 子句都只有一个条件，可以使用 <code>AND</code> 操作符在一个 <code>WHERE</code> 子句中使用多个条件。</p>
+<h2 id="AND-操作符"><a href="#AND-操作符" class="headerlink" title="AND 操作符"></a><code>AND</code> 操作符</h2><p>使用 <code>AND</code> 操作度之后，会筛选出同时满足所有条件的数据。</p>
+<p>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> prod_id, prod_price, prod_name</div><div class="line"><span class="keyword">FROM</span> Products</div><div class="line"><span class="keyword">WHERE</span> vend_id = <span class="string">'DLL01'</span> <span class="keyword">AND</span> prod_price &lt;= <span class="number">4</span>;</div></pre></td></tr></table></figure>
+<p>可以有多个过滤条件，如果有多个过滤条件，每两个条件之间都要加上 <code>AND</code> 关键字。</p>
+<h2 id="OR-操作符"><a href="#OR-操作符" class="headerlink" title="OR 操作符"></a><code>OR</code> 操作符</h2><p>使用 <code>OR</code> 操作符之后，一条数据只要满足任意一个条件就会被过滤出来。</p>
+<p>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> prod_name, prod_price</div><div class="line"><span class="keyword">FROM</span> Products</div><div class="line"><span class="keyword">WHERE</span> vend_id = <span class="string">'DLL01'</span> <span class="keyword">OR</span> vend_id = ‘BRS01’;</div></pre></td></tr></table></figure>
+<p>同样，使用 <code>OR</code> 操作符也可以有多个过滤条件。</p>
+<h2 id="操作符优先级"><a href="#操作符优先级" class="headerlink" title="操作符优先级"></a>操作符优先级</h2><p>考虑以下代码：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> prod_name, prod_price</div><div class="line"><span class="keyword">FROM</span> Products</div><div class="line"><span class="keyword">WHERE</span> vend_id = <span class="string">'DLL01'</span> <span class="keyword">OR</span> vend_id = <span class="string">'BRS01'</span></div><div class="line"><span class="keyword">AND</span> prod_price &gt;= <span class="number">10</span>;</div></pre></td></tr></table></figure>
+<p><code>AND</code> 操作符在求值中优先级更高，所以这段代码表示过滤出“<code>ven_id</code> 为 <code>DLL01</code> 的数据，或者 <code>ven_id</code> 为 <code>BRS01</code> 且 <code>prod_price</code> 大于等于 <code>10</code> 的数据。”</p>
+<p>如果想要表达的是下面这个意思：</p>
+<p>过滤出 <code>ven_id</code> 为 <code>DLL01</code> 或者 <code>BRS01</code>，而且 <code>prod_price</code> 都在 <code>10</code> 以上的数据。</p>
+<p>那么就要把代码改成这样：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> prod_name, prod_price</div><div class="line"><span class="keyword">FROM</span> Products</div><div class="line"><span class="keyword">WHERE</span> (vend_id = <span class="string">'DLL01'</span> <span class="keyword">OR</span> vend_id = <span class="string">'BRS01'</span>)</div><div class="line"><span class="keyword">AND</span> prod_price &gt;= <span class="number">10</span>;</div></pre></td></tr></table></figure>
+<h2 id="IN-操作符"><a href="#IN-操作符" class="headerlink" title="IN 操作符"></a><code>IN</code> 操作符</h2><p><code>IN</code> 操作符用来指定条件范围，范围中的每个条件都可以进行匹配。</p>
+<p>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> prod_name, prod_price</div><div class="line"><span class="keyword">FROM</span> Products</div><div class="line"><span class="keyword">WHERE</span> vend_id <span class="keyword">IN</span> ( <span class="string">'DLL01'</span>, <span class="string">'BRS01'</span> )</div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> prod_name;</div></pre></td></tr></table></figure>
+<p>其实 <code>IN</code> 操作符和 <code>OR</code> 操作符可以执行相同的功能。不过 <code>IN</code> 操作符有以下几个优点：</p>
+<ul>
+<li>相比于使用 <code>OR</code> 操作符连接多个条件，<code>IN</code> 操作符的语句更清晰简洁</li>
+<li><code>IN</code> 操作符一般比使用多个 <code>OR</code> 操作符执行得更快</li>
+<li><code>IN</code> 后面可以包含其他 <code>SELECT</code> 语句，能够更动态地建立 <code>WHERE</code> 子句。</li>
+</ul>
+<h2 id="NOT-操作符"><a href="#NOT-操作符" class="headerlink" title="NOT 操作符"></a><code>NOT</code> 操作符</h2><p><code>NOT</code> 操作符一般放在条件的前边，用来否定后面的条件。</p>
+<p>这段代码</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> prod_name</div><div class="line"><span class="keyword">FROM</span> Products</div><div class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> vend_id = <span class="string">'DLL01'</span></div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> prod_name;</div></pre></td></tr></table></figure>
+<p>和这段代码</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> prod_name</div><div class="line"><span class="keyword">FROM</span> Products</div><div class="line"><span class="keyword">WHERE</span> vend_id &lt;&gt; <span class="string">'DLL01'</span></div><div class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> prod_name;</div></pre></td></tr></table></figure>
+<p>表达同样的意思。</p>
+<blockquote>
+<p>补充说明：<code>MariaDB</code> 中的 <code>NOT</code></p>
+<p><code>MariaDB</code> 允许使用 <code>NOT</code> 子句否定 <code>IN</code>、<code>BETWEEN</code>、<code>EXISTS</code> 子句。大多数DBMS允许使用 <code>NOT</code> 否定任何条件。</p>
+</blockquote>
+<h1 id="使用通配符进行过滤"><a href="#使用通配符进行过滤" class="headerlink" title="使用通配符进行过滤"></a>使用通配符进行过滤</h1><h2 id="LIKE-操作符"><a href="#LIKE-操作符" class="headerlink" title="LIKE 操作符"></a><code>LIKE</code> 操作符</h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/27/TCP-IP协议（1）/" rel="next" title="TCP/IP 协议（1）">
+                <i class="fa fa-chevron-left"></i> TCP/IP 协议（1）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/27/Java对象与类/" rel="prev" title="Java对象与类">
+                Java对象与类 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTg4MS8xODQyNw"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/avatar.jpg"
+                alt="52Heartz" />
+            
+              <p class="site-author-name" itemprop="name">52Heartz</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/52Heartz" title="GitHub &rarr; https://github.com/52Heartz" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.zhihu.com/people/52Heartz" title="知乎 &rarr; https://www.zhihu.com/people/52Heartz" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念的区分"><span class="nav-number">1.</span> <span class="nav-text">基本概念的区分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#检索数据"><span class="nav-number">2.</span> <span class="nav-text">检索数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SELECT语句"><span class="nav-number">2.1.</span> <span class="nav-text">SELECT语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检索单个列"><span class="nav-number">2.2.</span> <span class="nav-text">检索单个列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检索多个列"><span class="nav-number">2.3.</span> <span class="nav-text">检索多个列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检索所有列"><span class="nav-number">2.4.</span> <span class="nav-text">检索所有列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检索结果去重"><span class="nav-number">2.5.</span> <span class="nav-text">检索结果去重</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检索结果中只选取部分行"><span class="nav-number">2.6.</span> <span class="nav-text">检索结果中只选取部分行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注释"><span class="nav-number">2.7.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序检索数据"><span class="nav-number">2.8.</span> <span class="nav-text">排序检索数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多级排序"><span class="nav-number">2.9.</span> <span class="nav-text">多级排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在-ORDER-BY-中使用列的相对位置进行排序"><span class="nav-number">2.10.</span> <span class="nav-text">在 ORDER BY 中使用列的相对位置进行排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#降序排列"><span class="nav-number">2.11.</span> <span class="nav-text">降序排列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#升序排列和降序排列具体是怎么排的呢？"><span class="nav-number">2.12.</span> <span class="nav-text">升序排列和降序排列具体是怎么排的呢？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#过滤数据"><span class="nav-number">3.</span> <span class="nav-text">过滤数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-WHERE-子句过滤数据"><span class="nav-number">3.1.</span> <span class="nav-text">使用 WHERE 子句过滤数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL过滤与应用过滤"><span class="nav-number">3.2.</span> <span class="nav-text">SQL过滤与应用过滤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WHERE-子句的操作符"><span class="nav-number">3.3.</span> <span class="nav-text">WHERE 子句的操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对比数值和对比字符串的区别"><span class="nav-number">3.4.</span> <span class="nav-text">对比数值和对比字符串的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BETWEEN-运算符的使用"><span class="nav-number">3.5.</span> <span class="nav-text">BETWEEN 运算符的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空值检查"><span class="nav-number">3.6.</span> <span class="nav-text">空值检查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不同DBMS特有的操作符"><span class="nav-number">3.7.</span> <span class="nav-text">不同DBMS特有的操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NULL-和非匹配"><span class="nav-number">3.8.</span> <span class="nav-text">NULL 和非匹配</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高级数据过滤"><span class="nav-number">4.</span> <span class="nav-text">高级数据过滤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AND-操作符"><span class="nav-number">4.1.</span> <span class="nav-text">AND 操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OR-操作符"><span class="nav-number">4.2.</span> <span class="nav-text">OR 操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作符优先级"><span class="nav-number">4.3.</span> <span class="nav-text">操作符优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IN-操作符"><span class="nav-number">4.4.</span> <span class="nav-text">IN 操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NOT-操作符"><span class="nav-number">4.5.</span> <span class="nav-text">NOT 操作符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用通配符进行过滤"><span class="nav-number">5.</span> <span class="nav-text">使用通配符进行过滤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LIKE-操作符"><span class="nav-number">5.1.</span> <span class="nav-text">LIKE 操作符</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">52Heartz</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.3.8</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.6.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2018/12/27/SQL基础知识/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
