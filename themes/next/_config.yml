@@ -407,9 +407,9 @@ font:
 
   # Global font settings used for all elements in <body>.
   global:
-    external: false
+    external: true
     family: Times New Roman
-    size:
+    size: 16
 
   # Font settings for Headlines (H1, H2, H3, H4, H5, H6).
   # Fallback to `global` font settings.
@@ -422,7 +422,7 @@ font:
   # Fallback to `global` font settings.
   posts:
     external: true
-    family:
+    family: Times New Roman
 
   # Font settings for Logo.
   # Fallback to `global` font settings.
