@@ -1,0 +1,76 @@
+---
+title: Java HashMap相关
+date: 2019-02-25 10:29:33
+updated:
+categories: Java
+tags:
+mathjax: true
+urlname: java-hash-map
+---
+
+# JDK7中的HashMap
+
+[HashMap](https://docs.oracle.com/javase/8/docs/api/index.html)是Java中常用的一个数据结构。
+
+
+
+<!-- more -->
+
+# JDK8中的HashMap
+
+> X % $2^n$ = X & ($2^n$ - 1)
+>
+> 一个数对 $2^n$ 取模 相当于 一个数和($2^n$ - 1)做按位与运算 。，注意，必须是对 $2^n$ 取模才满足。
+>
+> 假设n为3，则 $2^3​$ = 8，表示成2进制就是$(1000)_2​$。$2^3​$ - 1 = 7 ，即 $(0111)_2​$。
+>
+> 此时 X & ($2^3​$ - 1) 就相当于取X的2进制的最后三位数。
+>
+> 从2进制角度来看，X / 8相当于 X >> 3，即把X右移3位，此时得到了X / 8的商，而被移掉的部分(后三位)，则是X % 8，也就是余数。
+
+
+
+# JDK7中的ConcurrentHashMap
+
+
+
+
+
+# JDK8中的HashMap
+
+
+
+# HashTable
+
+
+
+# 参考资料
+
+## HashMap相关
+
+1. [Java HashMap工作原理及实现  - Yikun的博客](https://yikun.github.io/2015/04/01/Java-HashMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/)
+2. [天下无难试之HashMap面试刁难大全](https://zhuanlan.zhihu.com/p/32355676)
+3. [HashMap? ConcurrentHashMap? 相信看完这篇没人能难住你！ - crossoverJie的博客](https://crossoverjie.top/2018/07/23/java-senior/ConcurrentHashMap/)
+4. [【java集合】HashMap常见面试题 - CSDN博客](https://blog.csdn.net/u012512634/article/details/72735183)
+5. [HashMap 相关面试题及其解答](https://www.jianshu.com/p/75adf47958a7)
+6. [HashMap面试题：90%的人回答不上来](https://www.jianshu.com/p/7af5bb1b57e2)
+7. [HashMap的实现原理+阿里HasMap面试题 - CSDN博客](https://blog.csdn.net/lizhen1114/article/details/79001257)
+8. [JDK7与JDK8中HashMap的实现 - 开源中国](https://my.oschina.net/hosee/blog/618953)
+9. [全网把Map中的hash()分析的最透彻的文章，别无二家 - Hollis的博客](https://www.hollischuang.com/archives/2091)【确实写的很好！】
+10. [红黑树 - 开源中国](https://my.oschina.net/hosee/blog/618828)
+11. [谈谈HashMap线程不安全的体现 - ImportNew](http://www.importnew.com/22011.html)
+12. [HashMap的loadFactor为什么是0.75？](https://www.jianshu.com/p/64f6de3ffcc1)【分析的很深入了，还分析了数学原理】
+13. [HashMap初始容量与负载因子设置如何影响HashMap性能](https://blog.csdn.net/woaiwym/article/details/80622804)
+14. [Java 8系列之重新认识HashMap - 美团技术团队](https://tech.meituan.com/2016/06/24/java-hashmap.html)
+15. [【不做标题党，只做纯干货】HashMap在Jdk1.7和1.8中的实现](http://www.yuanrengu.com/index.php/20181106.html)
+
+## ConcurrentHashMap相关
+
+1. [ConcurrentHashMap原理分析 - ImportNew](http://www.importnew.com/16142.html)
+2. [面试题： HashMap与ConcurrentHashMap - 开源中国](https://my.oschina.net/keyven/blog/1831704)
+3. [关于Java面试，你应该准备这些知识点](https://www.jianshu.com/p/1b2f63a45476)
+4. [HashMap、HashTable、ConcurrentHashMap的原理与区别](http://www.yuanrengu.com/index.php/2017-01-17.html)
+5. [十大Java ConcurrentHashMap面试问题与解 - CSDN](https://blog.csdn.net/qq_41790443/article/details/79727915)
+6. [Java数据结构笔试面试知识集合之ConcurrentHashMap](https://zhuanlan.zhihu.com/p/35853397)
+7. [这几道Java集合框架面试题在面试中几乎必问](https://segmentfault.com/a/1190000016127895)
+

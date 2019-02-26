@@ -34,11 +34,11 @@ public final class System extends Object {
 }
 ```
 
-这里能看出，`out` 其实是 `System` 的一个静态成员变量，其类型是 [PrintStream](https://docs.oracle.com/javase/8/docs/api/java/io/PrintStream.html)。而`print()` 是 `PrintStream` 类的一个方法。
+这里能看出，`out` 其实是 `System` 的一个静态成员变量，其类型是 [PrintStream](https://docs.oracle.com/javase/8/docs/api/java/io/PrintStream.html)。而 `print()` 是 `PrintStream` 类的一个方法。
 
 通过查看Java Docs我们可以看到有很多重载的 `print()` 方法。
 
-![print_override_list](print_override_list.png)
+![print_overload_list](print_overload_list.png)
 
 可以看到，有很多重载的 `print()` 函数，但是没有专门支持 `int[]`、`long[]`、`double[]` 这种类型数组输出的 `print()` 方法。
 
@@ -70,3 +70,6 @@ public final class System extends Object {
 
 1. [java - out in System.out.println() - Stack Overflow](https://stackoverflow.com/questions/9454866/out-in-system-out-println)
 2. [How System.out.println() really works – Lucky's Notes](https://luckytoilet.wordpress.com/2010/05/21/how-system-out-println-really-works/)
+3. [System.out.println - Javapapers](http://javapapers.com/core-java/system-out-println/)
+4. [JAVA中的数组是对象吗？ - 知乎](https://www.zhihu.com/question/26297216)
+
