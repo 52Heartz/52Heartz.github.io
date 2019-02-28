@@ -12,7 +12,9 @@ urlname: java-hash-map
 
 [HashMap](https://docs.oracle.com/javase/8/docs/api/index.html)是Java中常用的一个数据结构。
 
+## 什么时候resize()
 
+当 HashMap 的 `size` 大于 `threshold` 的时候，也就是 HashMap 的元素数量大于 `threshlod` 的时候。
 
 <!-- more -->
 
@@ -36,7 +38,7 @@ urlname: java-hash-map
 
 
 
-# JDK8中的HashMap
+# JDK8中的ConcurrentHashMap
 
 
 
@@ -63,6 +65,7 @@ urlname: java-hash-map
 13. [HashMap初始容量与负载因子设置如何影响HashMap性能](https://blog.csdn.net/woaiwym/article/details/80622804)
 14. [Java 8系列之重新认识HashMap - 美团技术团队](https://tech.meituan.com/2016/06/24/java-hashmap.html)
 15. [【不做标题党，只做纯干货】HashMap在Jdk1.7和1.8中的实现](http://www.yuanrengu.com/index.php/20181106.html)
+16. [老生常谈，HashMap的死循环 - 占小狼的简书](https://www.jianshu.com/p/1e9cf0ac07f4)
 
 ## ConcurrentHashMap相关
 
