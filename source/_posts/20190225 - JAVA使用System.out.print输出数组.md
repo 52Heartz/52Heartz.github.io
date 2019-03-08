@@ -1,5 +1,5 @@
 ---
-title: JAVA使用System.out.print输出数组
+title: Java使用System.out.print输出数组
 date: 2019-02-25 12:01:46
 updated:
 categories:
@@ -18,9 +18,24 @@ System.out.print(array);
 [I@1b6d3586
 ```
 
-之前用Python用习惯了，没意识到Java不能这样输出数组。今天来剖析一下深层次的原因。
+之前用Python用习惯了，没意识到Java不能这样输出数组。
 
 <!-- more -->
+
+# 解决方案
+
+可以使用 `Arrays.toString()` 方法。
+
+```java
+int[] array = {5, 4, 3, 2, 1};
+System.out.print(Arrays.toString(array));
+```
+
+或者使用 for 循环遍历数组的每一个元素输出。
+
+# 剖析原因
+
+以下来剖析一下深层次的原因。
 
 来分析一下 `System.out.print`。
 
