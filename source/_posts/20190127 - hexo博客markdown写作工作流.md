@@ -19,3 +19,15 @@ markdown中插入的图片是不支持调整大小的，如果想要博客最后
 
 打草稿时，使用Typora写作。如果直接使用 `<img>` 标签，
 
+相关代码：
+
+```html
+<img src="xxx.png" alt="xxx" width="300px">
+```
+
+居中显示的图注：
+
+```html
+<p align="center">xxx</p>
+```
+
