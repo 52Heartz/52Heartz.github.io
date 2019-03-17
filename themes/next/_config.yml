@@ -499,7 +499,7 @@ han: false
 pangu: false
 
 # Swiftype Search API Key
-swiftype_key: zVDRCyChVzzc3scJ4Wfo
+# swiftype_key:
 
 # Baidu Analytics ID
 baidu_analytics: 72cebe754e7b9660bb059171b12ccc2c
@@ -738,7 +738,7 @@ calendar:
 # See: https://github.com/theme-next/hexo-theme-next/blob/master/docs/ALGOLIA-SEARCH.md
 # Dependencies: https://github.com/theme-next/theme-next-algolia-instant-search
 algolia_search:
-  enable: false
+  enable: true
   hits:
     per_page: 10
   labels:

@@ -85,3 +85,10 @@ deploy:
   type: git
   repo: git@github.com:52Heartz/52Heartz.github.io.git
   branch: master
+
+#Algolia
+algolia:
+  applicationID: '65PQRJXU7W'
+  apiKey: '24613607d198ad414e1c5d51ca98d7d3'
+  indexName: '52heartz.top'
+  chunkSize: 5000
