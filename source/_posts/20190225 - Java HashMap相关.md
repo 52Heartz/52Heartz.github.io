@@ -33,6 +33,103 @@ urlname: java-hash-map
 
 
 
+# ConcurrentHashMap 的应用
+
+## 接口限流，统计访问次数
+
+ConcurrentHashMap 中每个单独的方法都是原子操作，但是如果我们使用 ConcurrentHashMap 的时候可能需要在外层再加一些逻辑的操作，那么这些操作有可能就不是原子操作，从而可能导致并发带来的不一致性。
+
+所以有些时候，我们需要使用CAS（Compare And Swap）操作来保证整体操作的原子性。而 ConcurrentHashMap 的 `replace()` 和 `putIfAbsent()` 就是这样的操作。
+
+
+
+测试代码
+
+```java
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class CounterDemo1 {
+
+    private final Map<String, Long> urlCounter = new ConcurrentHashMap<>();
+
+    //接口调用次数+1
+    public long increase(String url) {
+        Long oldValue = urlCounter.get(url);
+        Long newValue = (oldValue == null) ? 1L : oldValue + 1;
+        urlCounter.put(url, newValue);
+        return newValue;
+    }
+
+    public long increase2(String url) {
+        Long oldValue, newValue;
+        while (true) {
+            oldValue = urlCounter.get(url);
+            if (oldValue == null) {
+                newValue = 1L;
+                //初始化成功，退出循环
+                if (urlCounter.putIfAbsent(url, 1L) == null) {
+                    break;
+                }else{
+                    System.out.println("初始化失败");
+                }
+                //如果初始化失败，说明其他线程已经初始化过了
+            } else {
+                newValue = oldValue + 1;
+                //+1成功，退出循环
+                if (urlCounter.replace(url, oldValue, newValue)) {
+                    break;
+                }else {
+                    System.out.println("+1失败");
+                }
+                //如果+1失败，说明其他线程已经修改过了旧值
+            }
+        }
+        return newValue;
+    }
+
+    //获取调用次数
+    public Long getCount(String url){
+        return urlCounter.get(url);
+    }
+
+    public static void main(String[] args) {
+        ExecutorService executor = Executors.newFixedThreadPool(10);
+        final CounterDemo1 counterDemo = new CounterDemo1();
+        int callTime = 100000;
+        final String url = "http://localhost:8080/hello";
+        CountDownLatch countDownLatch = new CountDownLatch(callTime);
+        //模拟并发情况下的接口调用统计
+        for(int i=0;i<callTime;i++){
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    counterDemo.increase2(url);
+                    countDownLatch.countDown();
+                }
+            });
+        }
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        executor.shutdown();
+        //等待所有线程统计完成后输出调用次数
+        System.out.println("调用次数："+counterDemo.getCount(url));
+    }
+}
+
+//TODO 还可以采用 atomicLong 类来实现
+```
+
+参考:[Java 并发实践 — ConcurrentHashMap 与 CAS](http://www.importnew.com/26035.html)
+
+
+
 # HashTable
 
 
