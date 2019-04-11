@@ -1,0 +1,1191 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>剑指Offer 39. 二叉树的深度 · 算法题目合集 - 52Heartz's Blog</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="52Heartz">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="20190326 - 剑指Offer 30. 包含 min 函数的栈.html" />
+    
+
+    
+    
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    剑指 Offer
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="20190311 - 剑指Offer 2. 实现单例模式.html">
+            
+                <a href="20190311 - 剑指Offer 2. 实现单例模式.html">
+            
+                    
+                    剑指Offer 2. 实现单例模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="20190227 - 剑指Offer 3. 数组中重复的数字.html">
+            
+                <a href="20190227 - 剑指Offer 3. 数组中重复的数字.html">
+            
+                    
+                    剑指Offer 3. 数组中重复的数字
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="20190227 - 剑指Offer 4. 二维数组中的查找.html">
+            
+                <a href="20190227 - 剑指Offer 4. 二维数组中的查找.html">
+            
+                    
+                    剑指Offer 4. 二维数组中的查找
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="20190227 - 剑指Offer 5. 替换空格.html">
+            
+                <a href="20190227 - 剑指Offer 5. 替换空格.html">
+            
+                    
+                    剑指Offer 5. 替换空格
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="20190227 - 剑指Offer 6. 从尾到头打印链表.html">
+            
+                <a href="20190227 - 剑指Offer 6. 从尾到头打印链表.html">
+            
+                    
+                    剑指Offer 6. 从尾到头打印链表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="20190228 - 剑指Offer 7. 重建二叉树.html">
+            
+                <a href="20190228 - 剑指Offer 7. 重建二叉树.html">
+            
+                    
+                    剑指Offer 7. 重建二叉树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="20190228 - 剑指Offer 8. 二叉树的下一个节点.html">
+            
+                <a href="20190228 - 剑指Offer 8. 二叉树的下一个节点.html">
+            
+                    
+                    剑指Offer 8. 二叉树的下一个节点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="20190228 - 剑指Offer 9. 用两个栈实现队列.html">
+            
+                <a href="20190228 - 剑指Offer 9. 用两个栈实现队列.html">
+            
+                    
+                    剑指Offer 9. 用两个栈实现队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="20190228 - 剑指Offer 10. 斐波那契数列.html">
+            
+                <a href="20190228 - 剑指Offer 10. 斐波那契数列.html">
+            
+                    
+                    剑指Offer 10. 斐波那契数列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="20190304 - 剑指Offer 11. 旋转数组的最小数字.html">
+            
+                <a href="20190304 - 剑指Offer 11. 旋转数组的最小数字.html">
+            
+                    
+                    剑指Offer 11. 旋转数组的最小数字
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.11" data-path="20190304 - 剑指Offer 12. 矩阵中的路径.html">
+            
+                <a href="20190304 - 剑指Offer 12. 矩阵中的路径.html">
+            
+                    
+                    剑指Offer 12. 矩阵中的路径
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.12" data-path="20190408 - 剑指Offer 13. 机器人的运动范围.html">
+            
+                <a href="20190408 - 剑指Offer 13. 机器人的运动范围.html">
+            
+                    
+                    剑指Offer 13. 机器人的运动范围
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.13" data-path="20190327 - 剑指Offer 27. 二叉树的镜像.html">
+            
+                <a href="20190327 - 剑指Offer 27. 二叉树的镜像.html">
+            
+                    
+                    剑指Offer 27. 二叉树的镜像
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.14" data-path="20190327 - 剑指Offer 28. 对称的二叉树.html">
+            
+                <a href="20190327 - 剑指Offer 28. 对称的二叉树.html">
+            
+                    
+                    剑指Offer 28. 对称的二叉树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.15" data-path="20190327 - 剑指Offer 29. 顺时针打印矩阵.html">
+            
+                <a href="20190327 - 剑指Offer 29. 顺时针打印矩阵.html">
+            
+                    
+                    剑指Offer 29. 顺时针打印矩阵
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.16" data-path="20190326 - 剑指Offer 30. 包含 min 函数的栈.html">
+            
+                <a href="20190326 - 剑指Offer 30. 包含 min 函数的栈.html">
+            
+                    
+                    剑指Offer 30. 包含 min 函数的栈
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.17" data-path="20190408 - 剑指Offer 39. 二叉树的深度.html">
+            
+                <a href="20190408 - 剑指Offer 39. 二叉树的深度.html">
+            
+                    
+                    剑指Offer 39. 二叉树的深度
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    LeetCode
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../leetcode/20190308 - LeetCode 1. Two Sum.html">
+            
+                <a href="../leetcode/20190308 - LeetCode 1. Two Sum.html">
+            
+                    
+                    LeetCode 1. Two Sum
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../leetcode/20190326 - LeetCode 2. Add Two Numbers.html">
+            
+                <a href="../leetcode/20190326 - LeetCode 2. Add Two Numbers.html">
+            
+                    
+                    LeetCode 2. Add Two Numbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../leetcode/20190305 - LeetCode 3. Longest Substring Without Repeating Characters.html">
+            
+                <a href="../leetcode/20190305 - LeetCode 3. Longest Substring Without Repeating Characters.html">
+            
+                    
+                    LeetCode 3. Longest Substring Without Repeating Characters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../leetcode/20190308 - LeetCode 15. 3Sum.html">
+            
+                <a href="../leetcode/20190308 - LeetCode 15. 3Sum.html">
+            
+                    
+                    LeetCode 15. 3Sum
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../leetcode/20190308 - LeetCode 18. 4Sum.html">
+            
+                <a href="../leetcode/20190308 - LeetCode 18. 4Sum.html">
+            
+                    
+                    LeetCode 18. 4Sum
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../leetcode/20190325 - LeetCode 19. Remove Nth Node From End of List.html">
+            
+                <a href="../leetcode/20190325 - LeetCode 19. Remove Nth Node From End of List.html">
+            
+                    
+                    LeetCode 19. Remove Nth Node From End of List
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../leetcode/20190305 - LeetCode 26. Remove Duplicates form Sorted Array.html">
+            
+                <a href="../leetcode/20190305 - LeetCode 26. Remove Duplicates form Sorted Array.html">
+            
+                    
+                    LeetCode 26. Remove Duplicates form Sorted Array
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../leetcode/20190304 - LeetCode 27. Remove Element.html">
+            
+                <a href="../leetcode/20190304 - LeetCode 27. Remove Element.html">
+            
+                    
+                    LeetCode 27. Remove Element
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../leetcode/20190301 - LeetCode 43. Multiply Strings.html">
+            
+                <a href="../leetcode/20190301 - LeetCode 43. Multiply Strings.html">
+            
+                    
+                    LeetCode 43. Multiply Strings
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="../leetcode/20190327 - LeetCode 48. Rotate Image.html">
+            
+                <a href="../leetcode/20190327 - LeetCode 48. Rotate Image.html">
+            
+                    
+                    LeetCode 48. Rotate Image
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="../leetcode/20190310 - LeetCode 53. Maximum Subarray.html">
+            
+                <a href="../leetcode/20190310 - LeetCode 53. Maximum Subarray.html">
+            
+                    
+                    LeetCode 53. Maximum Subarray
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12" data-path="../leetcode/20190327 - LeetCode 54. Spiral Matrix.html">
+            
+                <a href="../leetcode/20190327 - LeetCode 54. Spiral Matrix.html">
+            
+                    
+                    LeetCode 54. Spiral Matrix
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13" data-path="../leetcode/20190310 - LeetCode 70. Climbing Stairs.html">
+            
+                <a href="../leetcode/20190310 - LeetCode 70. Climbing Stairs.html">
+            
+                    
+                    LeetCode 70. Climbing Stairs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.14" data-path="../leetcode/20190305 - LeetCode 75. Sort Colors.html">
+            
+                <a href="../leetcode/20190305 - LeetCode 75. Sort Colors.html">
+            
+                    
+                    LeetCode 75. Sort Colors
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.15" data-path="../leetcode/20190306 - LeetCode 76. Minimum Window Substring.html">
+            
+                <a href="../leetcode/20190306 - LeetCode 76. Minimum Window Substring.html">
+            
+                    
+                    LeetCode 76. Minimum Window Substring
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.16" data-path="../leetcode/20190305 - LeetCode 80. Remove Duplicates from Sorted Array II.html">
+            
+                <a href="../leetcode/20190305 - LeetCode 80. Remove Duplicates from Sorted Array II.html">
+            
+                    
+                    LeetCode 80. Remove Duplicates from Sorted Array II
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.17" data-path="../leetcode/20190327 - LeetCode 101. Symmetric Tree.html">
+            
+                <a href="../leetcode/20190327 - LeetCode 101. Symmetric Tree.html">
+            
+                    
+                    LeetCode 101. Symmetric Tree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.18" data-path="../leetcode/20190113 - LeetCode 104. Maximum Depth of Binary Tree.html">
+            
+                <a href="../leetcode/20190113 - LeetCode 104. Maximum Depth of Binary Tree.html">
+            
+                    
+                    LeetCode 104. Maximum Depth of Binary Tree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.19" data-path="../leetcode/20190310 - LeetCode 121. Best Time to Buy and Sell Stock.html">
+            
+                <a href="../leetcode/20190310 - LeetCode 121. Best Time to Buy and Sell Stock.html">
+            
+                    
+                    LeetCode 121. Best Time to Buy and Sell Stock
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.20" data-path="../leetcode/20190305 - LeetCode 125. Valid Palindrome.html">
+            
+                <a href="../leetcode/20190305 - LeetCode 125. Valid Palindrome.html">
+            
+                    
+                    LeetCode 125. Valid Palindrome
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.21" data-path="../leetcode/20190308 - LeetCode 136. Single Number.html">
+            
+                <a href="../leetcode/20190308 - LeetCode 136. Single Number.html">
+            
+                    
+                    LeetCode 136. Single Number
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.22" data-path="../leetcode/20190324 - LeetCode 137. Single Number II.html">
+            
+                <a href="../leetcode/20190324 - LeetCode 137. Single Number II.html">
+            
+                    
+                    LeetCode 137. Single Number II
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.23" data-path="../leetcode/20190325 - LeetCode 141. Linked List Cycle.html">
+            
+                <a href="../leetcode/20190325 - LeetCode 141. Linked List Cycle.html">
+            
+                    
+                    LeetCode 141. Linked List Cycle
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.24" data-path="../leetcode/20190408 - LeetCode 153. Find Minimum in Rotated Sorted Array.html">
+            
+                <a href="../leetcode/20190408 - LeetCode 153. Find Minimum in Rotated Sorted Array.html">
+            
+                    
+                    LeetCode 153. Find Minimum in Rotated Sorted Array
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.25" data-path="../leetcode/20190408 - LeetCode 154. Find Minimum in Rotated Sorted Array II.html">
+            
+                <a href="../leetcode/20190408 - LeetCode 154. Find Minimum in Rotated Sorted Array II.html">
+            
+                    
+                    LeetCode 154. Find Minimum in Rotated Sorted Array II
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.26" data-path="../leetcode/20190326 - LeetCode 155. Min Stack.html">
+            
+                <a href="../leetcode/20190326 - LeetCode 155. Min Stack.html">
+            
+                    
+                    LeetCode 155. Min Stack
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.27" data-path="../leetcode/20190305 - LeetCode 167. Two Sum II - Input array is sorted.html">
+            
+                <a href="../leetcode/20190305 - LeetCode 167. Two Sum II - Input array is sorted.html">
+            
+                    
+                    LeetCode 167. Two Sum II - Input array is sorted
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.28" data-path="../leetcode/20190309 - LeetCode 169. Majority Element.html">
+            
+                <a href="../leetcode/20190309 - LeetCode 169. Majority Element.html">
+            
+                    
+                    LeetCode 169. Majority Element
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.29" data-path="../leetcode/20190308 - LeetCode 202. Happy Number.html">
+            
+                <a href="../leetcode/20190308 - LeetCode 202. Happy Number.html">
+            
+                    
+                    LeetCode 202. Happy Number
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.30" data-path="../leetcode/20190308 - LeetCode 205. Isomorphic Strings.html">
+            
+                <a href="../leetcode/20190308 - LeetCode 205. Isomorphic Strings.html">
+            
+                    
+                    LeetCode 205. Isomorphic Strings
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.31" data-path="../leetcode/20190328 - LeetCode 206. Reverse Linked List.html">
+            
+                <a href="../leetcode/20190328 - LeetCode 206. Reverse Linked List.html">
+            
+                    
+                    LeetCode 206. Reverse Linked List
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.32" data-path="../leetcode/20190305 - LeetCode 209. Minimum Size Subarray Sum.html">
+            
+                <a href="../leetcode/20190305 - LeetCode 209. Minimum Size Subarray Sum.html">
+            
+                    
+                    LeetCode 209. Minimum Size Subarray Sum
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.33" data-path="../leetcode/20190305 - LeetCode 215. Kth Largest Element in an Array.html">
+            
+                <a href="../leetcode/20190305 - LeetCode 215. Kth Largest Element in an Array.html">
+            
+                    
+                    LeetCode 215. Kth Largest Element in an Array
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.34" data-path="../leetcode/20190326 - LeetCode 225. Implement Stack using Queues.html">
+            
+                <a href="../leetcode/20190326 - LeetCode 225. Implement Stack using Queues.html">
+            
+                    
+                    LeetCode 225. Implement Stack using Queues
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.35" data-path="../leetcode/20190326 - LeetCode 232. Implement Queue using Stacks.html">
+            
+                <a href="../leetcode/20190326 - LeetCode 232. Implement Queue using Stacks.html">
+            
+                    
+                    LeetCode 232. Implement Queue using Stacks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.36" data-path="../leetcode/20190328 - LeetCode 234. Palindrome Linked List.html">
+            
+                <a href="../leetcode/20190328 - LeetCode 234. Palindrome Linked List.html">
+            
+                    
+                    LeetCode 234. Palindrome Linked List
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.37" data-path="../leetcode/20190309 - LeetCode 240. Search a 2D Matrix II.html">
+            
+                <a href="../leetcode/20190309 - LeetCode 240. Search a 2D Matrix II.html">
+            
+                    
+                    LeetCode 240. Search a 2D Matrix II
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.38" data-path="../leetcode/20190308 - LeetCode 242. Valid Anagram.html">
+            
+                <a href="../leetcode/20190308 - LeetCode 242. Valid Anagram.html">
+            
+                    
+                    LeetCode 242. Valid Anagram
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.39" data-path="../leetcode/20190304 - LeetCode 283. Move Zeros.html">
+            
+                <a href="../leetcode/20190304 - LeetCode 283. Move Zeros.html">
+            
+                    
+                    LeetCode 283. Move Zeros
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.40" data-path="../leetcode/20190308 - LeetCode 290. Word Pattern.html">
+            
+                <a href="../leetcode/20190308 - LeetCode 290. Word Pattern.html">
+            
+                    
+                    LeetCode 290. Word Pattern
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.41" data-path="../leetcode/20190306 - LeetCode 349. Intersection of Two Arrays.html">
+            
+                <a href="../leetcode/20190306 - LeetCode 349. Intersection of Two Arrays.html">
+            
+                    
+                    LeetCode 349. Intersection of Two Arrays
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.42" data-path="../leetcode/20190308 - LeetCode 350. Intersection of Two Arrays II.html">
+            
+                <a href="../leetcode/20190308 - LeetCode 350. Intersection of Two Arrays II.html">
+            
+                    
+                    LeetCode 350. Intersection of Two Arrays II
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.43" data-path="../leetcode/20190306 - LeetCode 438. Find All Anagrams in a String.html">
+            
+                <a href="../leetcode/20190306 - LeetCode 438. Find All Anagrams in a String.html">
+            
+                    
+                    LeetCode 438. Find All Anagrams in a String
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.44" data-path="../leetcode/20190308 - LeetCode 451. Sort Characters By Frequency.html">
+            
+                <a href="../leetcode/20190308 - LeetCode 451. Sort Characters By Frequency.html">
+            
+                    
+                    LeetCode 451. Sort Characters By Frequency
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.45" data-path="../leetcode/20190328 - LeetCode 766. Toeplitz Matrix.html">
+            
+                <a href="../leetcode/20190328 - LeetCode 766. Toeplitz Matrix.html">
+            
+                    
+                    LeetCode 766. Toeplitz Matrix
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.46" data-path="../leetcode/20190114 - LeetCode 905. Sort Array By Parity.html">
+            
+                <a href="../leetcode/20190114 - LeetCode 905. Sort Array By Parity.html">
+            
+                    
+                    LeetCode 905. Sort Array By Parity
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >剑指Offer 39. 二叉树的深度</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p>&#x5251;&#x6307;Offer 39. &#x4E8C;&#x53C9;&#x6811;&#x7684;&#x6DF1;&#x5EA6;</p>
+<!-- more -->
+<h1 id="&#x89E3;&#x7B54;1java&#xFF1A;&#x9012;&#x5F52;">&#x89E3;&#x7B54;1[Java]&#xFF1A;&#x9012;&#x5F52;</h1>
+<pre><code class="lang-java"><span class="hljs-comment">/*
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+}
+*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">TreeDepth</span><span class="hljs-params">(TreeNode root)</span> </span>{
+        <span class="hljs-keyword">if</span> (root == <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        }
+
+        <span class="hljs-keyword">int</span> leftDepth = TreeDepth(root.left);
+        <span class="hljs-keyword">int</span> rightDepth = TreeDepth(root.right);
+
+        <span class="hljs-keyword">return</span> leftDepth &gt; rightDepth ? leftDepth + <span class="hljs-number">1</span> : rightDepth + <span class="hljs-number">1</span>;
+    }
+}
+</code></pre>
+<h2 id="&#x9012;&#x5F52;&#x7684;&#x53E6;&#x4E00;&#x79CD;&#x5199;&#x6CD5;">&#x9012;&#x5F52;&#x7684;&#x53E6;&#x4E00;&#x79CD;&#x5199;&#x6CD5;</h2>
+<pre><code class="lang-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">maxDepth</span><span class="hljs-params">(TreeNode root)</span> </span>{
+        <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>)
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">return</span> Math.max(maxDepth(root.left), maxDepth(root.right))+<span class="hljs-number">1</span>;
+    }
+}
+</code></pre>
+<h1 id="&#x89E3;&#x7B54;2java&#xFF1A;&#x975E;&#x9012;&#x5F52;">&#x89E3;&#x7B54;2[Java]&#xFF1A;&#x975E;&#x9012;&#x5F52;</h1>
+<h2 id="&#x6838;&#x5FC3;&#x601D;&#x60F3;">&#x6838;&#x5FC3;&#x601D;&#x60F3;</h2>
+<p>&#x5C42;&#x6B21;&#x904D;&#x5386;&#x3002;</p>
+<h2 id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</h2>
+<pre><code class="lang-java"><span class="hljs-keyword">import</span> java.util.Queue;
+<span class="hljs-keyword">import</span> java.util.LinkedList;
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">TreeDepth</span><span class="hljs-params">(TreeNode root)</span> </span>{
+        <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>)
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> deep = <span class="hljs-number">0</span>;
+        Queue&lt;TreeNode&gt; queue = <span class="hljs-keyword">new</span> LinkedList&lt;TreeNode&gt;();
+        queue.offer(root);
+        <span class="hljs-keyword">int</span> start = <span class="hljs-number">0</span>, end = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">while</span>(!queue.isEmpty()){
+            TreeNode node = queue.poll();
+            start ++;
+            <span class="hljs-keyword">if</span>(node.left != <span class="hljs-keyword">null</span>){
+                queue.offer(node.left);
+            }
+            <span class="hljs-keyword">if</span>(node.right != <span class="hljs-keyword">null</span>){
+                queue.offer(node.right);
+            }
+            <span class="hljs-keyword">if</span>(start == end){
+                end = queue.size();
+                start = <span class="hljs-number">0</span>;
+                deep ++;
+            }
+        }
+        <span class="hljs-keyword">return</span> deep;
+    }
+}
+</code></pre>
+<h2 id="&#x5C42;&#x6B21;&#x904D;&#x5386;&#x7684;&#x53E6;&#x4E00;&#x79CD;&#x5199;&#x6CD5;&#xFF1A;&#x53CC;&#x5FAA;&#x73AF;">&#x5C42;&#x6B21;&#x904D;&#x5386;&#x7684;&#x53E6;&#x4E00;&#x79CD;&#x5199;&#x6CD5;&#xFF1A;&#x53CC;&#x5FAA;&#x73AF;</h2>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">treeDepth2</span><span class="hljs-params">(BinaryTreeNode root)</span> </span>{
+        <span class="hljs-keyword">if</span> (root == <span class="hljs-keyword">null</span>)
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+
+        BinaryTreeNode current = <span class="hljs-keyword">null</span>;
+        LinkedList&lt;BinaryTreeNode&gt; queue = <span class="hljs-keyword">new</span> LinkedList&lt;BinaryTreeNode&gt;();
+        queue.offer(root);
+        <span class="hljs-keyword">int</span> cur, last;
+        <span class="hljs-keyword">int</span> level = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span> (!queue.isEmpty()) {
+            cur = <span class="hljs-number">0</span>;<span class="hljs-comment">//&#x8BB0;&#x5F55;&#x672C;&#x5C42;&#x5DF2;&#x7ECF;&#x904D;&#x5386;&#x7684;&#x8282;&#x70B9;&#x4E2A;&#x6570;  </span>
+            last = queue.size();<span class="hljs-comment">//&#x5F53;&#x904D;&#x5386;&#x5B8C;&#x5F53;&#x524D;&#x5C42;&#x4EE5;&#x540E;&#xFF0C;&#x961F;&#x5217;&#x91CC;&#x5143;&#x7D20;&#x5168;&#x662F;&#x4E0B;&#x4E00;&#x5C42;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x961F;&#x5217;&#x7684;&#x957F;&#x5EA6;&#x662F;&#x8FD9;&#x4E00;&#x5C42;&#x7684;&#x8282;&#x70B9;&#x7684;&#x4E2A;&#x6570;  </span>
+            <span class="hljs-keyword">while</span> (cur &lt; last)<span class="hljs-comment">//&#x5F53;&#x8FD8;&#x6CA1;&#x6709;&#x904D;&#x5386;&#x5230;&#x672C;&#x5C42;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x65F6;&#x5FAA;&#x73AF;  </span>
+            {
+                current = queue.poll();<span class="hljs-comment">//&#x51FA;&#x961F;&#x4E00;&#x4E2A;&#x5143;&#x7D20;  </span>
+                cur++;
+                <span class="hljs-comment">//&#x628A;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x7684;&#x5DE6;&#x53F3;&#x8282;&#x70B9;&#x5165;&#x961F;&#xFF08;&#x5982;&#x679C;&#x5B58;&#x5728;&#x7684;&#x8BDD;&#xFF09;  </span>
+                <span class="hljs-keyword">if</span> (current.left != <span class="hljs-keyword">null</span>) {
+                    queue.offer(current.left);
+                }
+                <span class="hljs-keyword">if</span> (current.right != <span class="hljs-keyword">null</span>) {
+                    queue.offer(current.right);
+                }
+            }
+            level++;<span class="hljs-comment">//&#x6BCF;&#x904D;&#x5386;&#x5B8C;&#x4E00;&#x5C42;level+1  </span>
+        }
+        <span class="hljs-keyword">return</span> level;
+    }
+}
+</code></pre>
+<h1 id="&#x53C2;&#x8003;&#x8D44;&#x6599;">&#x53C2;&#x8003;&#x8D44;&#x6599;</h1>
+<ol>
+<li><a href="https://www.weiweiblog.cn/treedepth/" target="_blank">[&#x5251;&#x6307;offer] &#x4E8C;&#x53C9;&#x6811;&#x7684;&#x6DF1;&#x5EA6;</a></li>
+<li><a href="">&#x5251;&#x6307;offer:&#x4E8C;&#x53C9;&#x6811;&#x7684;&#x6DF1;&#x5EA6;&#xFF08;&#x9012;&#x5F52;&amp;&amp;&#x975E;&#x9012;&#x5F52;&#xFF09;&#xFF08;java&#xFF09;</a></li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="20190326 - 剑指Offer 30. 包含 min 函数的栈.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 剑指Offer 30. 包含 min 函数的栈">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"剑指Offer 39. 二叉树的深度","mathjax":true,"date":"2019-04-08T21:23:02.000Z","updated":null,"categories":null,"tags":null,"urlname":"jian-zhi-offer-39","level":"1.2.17","depth":2,"next":{"title":"LeetCode","level":"1.3","depth":1,"ref":"","articles":[{"title":"LeetCode 1. Two Sum","level":"1.3.1","depth":2,"path":"leetcode/20190308 - LeetCode 1. Two Sum.md","ref":"leetcode/20190308 - LeetCode 1. Two Sum.md","articles":[]},{"title":"LeetCode 2. Add Two Numbers","level":"1.3.2","depth":2,"path":"leetcode/20190326 - LeetCode 2. Add Two Numbers.md","ref":"leetcode/20190326 - LeetCode 2. Add Two Numbers.md","articles":[]},{"title":"LeetCode 3. Longest Substring Without Repeating Characters","level":"1.3.3","depth":2,"path":"leetcode/20190305 - LeetCode 3. Longest Substring Without Repeating Characters.md","ref":"leetcode/20190305 - LeetCode 3. Longest Substring Without Repeating Characters.md","articles":[]},{"title":"LeetCode 15. 3Sum","level":"1.3.4","depth":2,"path":"leetcode/20190308 - LeetCode 15. 3Sum.md","ref":"leetcode/20190308 - LeetCode 15. 3Sum.md","articles":[]},{"title":"LeetCode 18. 4Sum","level":"1.3.5","depth":2,"path":"leetcode/20190308 - LeetCode 18. 4Sum.md","ref":"leetcode/20190308 - LeetCode 18. 4Sum.md","articles":[]},{"title":"LeetCode 19. Remove Nth Node From End of List","level":"1.3.6","depth":2,"path":"leetcode/20190325 - LeetCode 19. Remove Nth Node From End of List.md","ref":"leetcode/20190325 - LeetCode 19. Remove Nth Node From End of List.md","articles":[]},{"title":"LeetCode 26. Remove Duplicates form Sorted Array","level":"1.3.7","depth":2,"path":"leetcode/20190305 - LeetCode 26. Remove Duplicates form Sorted Array.md","ref":"leetcode/20190305 - LeetCode 26. Remove Duplicates form Sorted Array.md","articles":[]},{"title":"LeetCode 27. Remove Element","level":"1.3.8","depth":2,"path":"leetcode/20190304 - LeetCode 27. Remove Element.md","ref":"leetcode/20190304 - LeetCode 27. Remove Element.md","articles":[]},{"title":"LeetCode 43. Multiply Strings","level":"1.3.9","depth":2,"path":"leetcode/20190301 - LeetCode 43. Multiply Strings.md","ref":"leetcode/20190301 - LeetCode 43. Multiply Strings.md","articles":[]},{"title":"LeetCode 48. Rotate Image","level":"1.3.10","depth":2,"path":"leetcode/20190327 - LeetCode 48. Rotate Image.md","ref":"leetcode/20190327 - LeetCode 48. Rotate Image.md","articles":[]},{"title":"LeetCode 53. Maximum Subarray","level":"1.3.11","depth":2,"path":"leetcode/20190310 - LeetCode 53. Maximum Subarray.md","ref":"leetcode/20190310 - LeetCode 53. Maximum Subarray.md","articles":[]},{"title":"LeetCode 54. Spiral Matrix","level":"1.3.12","depth":2,"path":"leetcode/20190327 - LeetCode 54. Spiral Matrix.md","ref":"leetcode/20190327 - LeetCode 54. Spiral Matrix.md","articles":[]},{"title":"LeetCode 70. Climbing Stairs","level":"1.3.13","depth":2,"path":"leetcode/20190310 - LeetCode 70. Climbing Stairs.md","ref":"leetcode/20190310 - LeetCode 70. Climbing Stairs.md","articles":[]},{"title":"LeetCode 75. Sort Colors","level":"1.3.14","depth":2,"path":"leetcode/20190305 - LeetCode 75. Sort Colors.md","ref":"leetcode/20190305 - LeetCode 75. Sort Colors.md","articles":[]},{"title":"LeetCode 76. Minimum Window Substring","level":"1.3.15","depth":2,"path":"leetcode/20190306 - LeetCode 76. Minimum Window Substring.md","ref":"leetcode/20190306 - LeetCode 76. Minimum Window Substring.md","articles":[]},{"title":"LeetCode 80. Remove Duplicates from Sorted Array II","level":"1.3.16","depth":2,"path":"leetcode/20190305 - LeetCode 80. Remove Duplicates from Sorted Array II.md","ref":"leetcode/20190305 - LeetCode 80. Remove Duplicates from Sorted Array II.md","articles":[]},{"title":"LeetCode 101. Symmetric Tree","level":"1.3.17","depth":2,"path":"leetcode/20190327 - LeetCode 101. Symmetric Tree.md","ref":"leetcode/20190327 - LeetCode 101. Symmetric Tree.md","articles":[]},{"title":"LeetCode 104. Maximum Depth of Binary Tree","level":"1.3.18","depth":2,"path":"leetcode/20190113 - LeetCode 104. Maximum Depth of Binary Tree.md","ref":"leetcode/20190113 - LeetCode 104. Maximum Depth of Binary Tree.md","articles":[]},{"title":"LeetCode 121. Best Time to Buy and Sell Stock","level":"1.3.19","depth":2,"path":"leetcode/20190310 - LeetCode 121. Best Time to Buy and Sell Stock.md","ref":"leetcode/20190310 - LeetCode 121. Best Time to Buy and Sell Stock.md","articles":[]},{"title":"LeetCode 125. Valid Palindrome","level":"1.3.20","depth":2,"path":"leetcode/20190305 - LeetCode 125. Valid Palindrome.md","ref":"leetcode/20190305 - LeetCode 125. Valid Palindrome.md","articles":[]},{"title":"LeetCode 136. Single Number","level":"1.3.21","depth":2,"path":"leetcode/20190308 - LeetCode 136. Single Number.md","ref":"leetcode/20190308 - LeetCode 136. Single Number.md","articles":[]},{"title":"LeetCode 137. Single Number II","level":"1.3.22","depth":2,"path":"leetcode/20190324 - LeetCode 137. Single Number II.md","ref":"leetcode/20190324 - LeetCode 137. Single Number II.md","articles":[]},{"title":"LeetCode 141. Linked List Cycle","level":"1.3.23","depth":2,"path":"leetcode/20190325 - LeetCode 141. Linked List Cycle.md","ref":"leetcode/20190325 - LeetCode 141. Linked List Cycle.md","articles":[]},{"title":"LeetCode 153. Find Minimum in Rotated Sorted Array","level":"1.3.24","depth":2,"path":"leetcode/20190408 - LeetCode 153. Find Minimum in Rotated Sorted Array.md","ref":"leetcode/20190408 - LeetCode 153. Find Minimum in Rotated Sorted Array.md","articles":[]},{"title":"LeetCode 154. Find Minimum in Rotated Sorted Array II","level":"1.3.25","depth":2,"path":"leetcode/20190408 - LeetCode 154. Find Minimum in Rotated Sorted Array II.md","ref":"leetcode/20190408 - LeetCode 154. Find Minimum in Rotated Sorted Array II.md","articles":[]},{"title":"LeetCode 155. Min Stack","level":"1.3.26","depth":2,"path":"leetcode/20190326 - LeetCode 155. Min Stack.md","ref":"leetcode/20190326 - LeetCode 155. Min Stack.md","articles":[]},{"title":"LeetCode 167. Two Sum II - Input array is sorted","level":"1.3.27","depth":2,"path":"leetcode/20190305 - LeetCode 167. Two Sum II - Input array is sorted.md","ref":"leetcode/20190305 - LeetCode 167. Two Sum II - Input array is sorted.md","articles":[]},{"title":"LeetCode 169. Majority Element","level":"1.3.28","depth":2,"path":"leetcode/20190309 - LeetCode 169. Majority Element.md","ref":"leetcode/20190309 - LeetCode 169. Majority Element.md","articles":[]},{"title":"LeetCode 202. Happy Number","level":"1.3.29","depth":2,"path":"leetcode/20190308 - LeetCode 202. Happy Number.md","ref":"leetcode/20190308 - LeetCode 202. Happy Number.md","articles":[]},{"title":"LeetCode 205. Isomorphic Strings","level":"1.3.30","depth":2,"path":"leetcode/20190308 - LeetCode 205. Isomorphic Strings.md","ref":"leetcode/20190308 - LeetCode 205. Isomorphic Strings.md","articles":[]},{"title":"LeetCode 206. Reverse Linked List","level":"1.3.31","depth":2,"path":"leetcode/20190328 - LeetCode 206. Reverse Linked List.md","ref":"leetcode/20190328 - LeetCode 206. Reverse Linked List.md","articles":[]},{"title":"LeetCode 209. Minimum Size Subarray Sum","level":"1.3.32","depth":2,"path":"leetcode/20190305 - LeetCode 209. Minimum Size Subarray Sum.md","ref":"leetcode/20190305 - LeetCode 209. Minimum Size Subarray Sum.md","articles":[]},{"title":"LeetCode 215. Kth Largest Element in an Array","level":"1.3.33","depth":2,"path":"leetcode/20190305 - LeetCode 215. Kth Largest Element in an Array.md","ref":"leetcode/20190305 - LeetCode 215. Kth Largest Element in an Array.md","articles":[]},{"title":"LeetCode 225. Implement Stack using Queues","level":"1.3.34","depth":2,"path":"leetcode/20190326 - LeetCode 225. Implement Stack using Queues.md","ref":"leetcode/20190326 - LeetCode 225. Implement Stack using Queues.md","articles":[]},{"title":"LeetCode 232. Implement Queue using Stacks","level":"1.3.35","depth":2,"path":"leetcode/20190326 - LeetCode 232. Implement Queue using Stacks.md","ref":"leetcode/20190326 - LeetCode 232. Implement Queue using Stacks.md","articles":[]},{"title":"LeetCode 234. Palindrome Linked List","level":"1.3.36","depth":2,"path":"leetcode/20190328 - LeetCode 234. Palindrome Linked List.md","ref":"leetcode/20190328 - LeetCode 234. Palindrome Linked List.md","articles":[]},{"title":"LeetCode 240. Search a 2D Matrix II","level":"1.3.37","depth":2,"path":"leetcode/20190309 - LeetCode 240. Search a 2D Matrix II.md","ref":"leetcode/20190309 - LeetCode 240. Search a 2D Matrix II.md","articles":[]},{"title":"LeetCode 242. Valid Anagram","level":"1.3.38","depth":2,"path":"leetcode/20190308 - LeetCode 242. Valid Anagram.md","ref":"leetcode/20190308 - LeetCode 242. Valid Anagram.md","articles":[]},{"title":"LeetCode 283. Move Zeros","level":"1.3.39","depth":2,"path":"leetcode/20190304 - LeetCode 283. Move Zeros.md","ref":"leetcode/20190304 - LeetCode 283. Move Zeros.md","articles":[]},{"title":"LeetCode 290. Word Pattern","level":"1.3.40","depth":2,"path":"leetcode/20190308 - LeetCode 290. Word Pattern.md","ref":"leetcode/20190308 - LeetCode 290. Word Pattern.md","articles":[]},{"title":"LeetCode 349. Intersection of Two Arrays","level":"1.3.41","depth":2,"path":"leetcode/20190306 - LeetCode 349. Intersection of Two Arrays.md","ref":"leetcode/20190306 - LeetCode 349. Intersection of Two Arrays.md","articles":[]},{"title":"LeetCode 350. Intersection of Two Arrays II","level":"1.3.42","depth":2,"path":"leetcode/20190308 - LeetCode 350. Intersection of Two Arrays II.md","ref":"leetcode/20190308 - LeetCode 350. Intersection of Two Arrays II.md","articles":[]},{"title":"LeetCode 438. Find All Anagrams in a String","level":"1.3.43","depth":2,"path":"leetcode/20190306 - LeetCode 438. Find All Anagrams in a String.md","ref":"leetcode/20190306 - LeetCode 438. Find All Anagrams in a String.md","articles":[]},{"title":"LeetCode 451. Sort Characters By Frequency","level":"1.3.44","depth":2,"path":"leetcode/20190308 - LeetCode 451. Sort Characters By Frequency.md","ref":"leetcode/20190308 - LeetCode 451. Sort Characters By Frequency.md","articles":[]},{"title":"LeetCode 766. Toeplitz Matrix","level":"1.3.45","depth":2,"path":"leetcode/20190328 - LeetCode 766. Toeplitz Matrix.md","ref":"leetcode/20190328 - LeetCode 766. Toeplitz Matrix.md","articles":[]},{"title":"LeetCode 905. Sort Array By Parity","level":"1.3.46","depth":2,"path":"leetcode/20190114 - LeetCode 905. Sort Array By Parity.md","ref":"leetcode/20190114 - LeetCode 905. Sort Array By Parity.md","articles":[]}]},"previous":{"title":"剑指Offer 30. 包含 min 函数的栈","level":"1.2.16","depth":2,"path":"jian-zhi-offer/20190326 - 剑指Offer 30. 包含 min 函数的栈.md","ref":"jian-zhi-offer/20190326 - 剑指Offer 30. 包含 min 函数的栈.md","articles":[]},"dir":"ltr"},"config":{"plugins":["katex","favicon","livereload"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/52Heartz"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"./source/images/donate.png","title":"","button":"赞赏","alipayText":" "},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon-bal":{"shortcut":"./source/favicon.ico","bookmark":"./source/favicon.ico","appleTouch":"./source/apple-touch-icon.ico","appleTouchMore":{"120x120":"./source/apple-touch-icon.ico","180x180":"./source/apple-touch-icon.ico"}},"anchor-navigation-ex":{"showLevel":false},"favicon":{},"github-buttons":{"buttons":[{"user":"52Heartz","repo":"glory","type":"star","size":"small","count":true}]},"sharing":{"qq":false,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"52Heartz","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"mathjax-bak":{"extensions":["tex2jax.js"],"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"processEscapes":true}},"title":"算法题目合集 - 52Heartz's Blog","language":"zh-hans","gitbook":"3.2.3","description":"包含剑指 Offer 和一些 LeetCode 题目的解答","plugins-bak":["mathjax","katex","-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","donate","sharing-plus","anchor-navigation-ex","favicon"]},"file":{"path":"jian-zhi-offer/20190408 - 剑指Offer 39. 二叉树的深度.md","mtime":"2019-04-08T14:49:59.812Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-11T11:46:52.726Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
