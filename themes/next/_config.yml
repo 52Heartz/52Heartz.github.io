@@ -144,7 +144,7 @@ menu:
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
-  gitbook: /book/
+  gitbook: /book/ || book-open
 
 # Enable/Disable menu icons / item badges.
 menu_settings:
