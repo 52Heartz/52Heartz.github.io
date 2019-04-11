@@ -31,3 +31,10 @@ markdown中插入的图片是不支持调整大小的，如果想要博客最后
 <p align="center">xxx</p>
 ```
 
+
+
+
+
+# 参考资料
+
+1. [Hexo常见问题解决方案](https://xuanwo.io/2014/08/14/hexo-usual-problem/)
