@@ -18,7 +18,7 @@ System.out.print(array);
 [I@1b6d3586
 ```
 
-之前用Python用习惯了，没意识到Java不能这样输出数组。
+之前用 Python 用习惯了，没意识到 Java 不能这样输出数组。
 
 <!-- more -->
 
