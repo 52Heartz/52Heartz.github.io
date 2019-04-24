@@ -155,6 +155,7 @@ public class CounterDemo1 {
 15. [Java 8系列之重新认识HashMap - 美团技术团队](https://tech.meituan.com/2016/06/24/java-hashmap.html)
 16. [【不做标题党，只做纯干货】HashMap在Jdk1.7和1.8中的实现](http://www.yuanrengu.com/index.php/20181106.html)
 17. [老生常谈，HashMap的死循环 - 占小狼的简书](https://www.jianshu.com/p/1e9cf0ac07f4)
+18. [HashMap的实现与优化](http://www.importnew.com/21294.html)
 
 ## ConcurrentHashMap相关
 
