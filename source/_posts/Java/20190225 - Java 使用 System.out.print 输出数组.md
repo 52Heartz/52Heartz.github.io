@@ -3,6 +3,7 @@ title: Java 使用 System.out.print 输出数组
 date: 2019-02-25 12:01:46
 updated:
 categories:
+- Java
 tags:
 urlname: java-System-out-print-arrays
 ---

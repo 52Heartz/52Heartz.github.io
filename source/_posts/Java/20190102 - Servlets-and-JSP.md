@@ -3,7 +3,7 @@ title: Servlets and JSP
 date: 2019-01-02 23:14:57
 updated:
 categories:
-- 技术
+- Java
 tags:
 - Java
 urlname: Java-servlets-and-JSP

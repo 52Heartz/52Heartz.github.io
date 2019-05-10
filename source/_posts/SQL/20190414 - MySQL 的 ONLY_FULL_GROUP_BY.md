@@ -3,7 +3,7 @@ title: MySQL 的 ONLY_FULL_GROUP_BY
 mathjax: true
 date: 2019-04-14 09:45:41
 updated:
-categories:
+categories: SQL
 tags:
 urlname: mysql-only-full-group-by
 ---
