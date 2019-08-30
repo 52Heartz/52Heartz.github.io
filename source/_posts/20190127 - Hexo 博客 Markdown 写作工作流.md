@@ -47,7 +47,9 @@ markdown中插入的图片是不支持调整大小的，如果想要博客最后
 
 [tableconvert](https://tableconvert.com/)
 
+## Markdown 表格中换行
 
+使用 HTML 的 `<br>` 标签
 
 
 
