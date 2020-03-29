@@ -1,0 +1,134 @@
+---
+title: Code Search Platforms
+mathjax: true
+date: 2020-03-20 20:27:37
+updated:
+categories:
+tags:
+urlname: Code-Search-Platforms
+---
+
+
+
+<!-- more -->
+
+# 需求
+
+1. 可以绑定共有或者私有 Git 仓库，定时轮询是否有更新，有更新则增量索引。
+2. 支持多分支索引。
+
+
+
+# FishEye
+
+[fisheye-破解安装fisheye-4.7.2](https://www.cnblogs.com/fengwenqian/p/11770919.html)
+
+[代码审查工具fisheye安装及破解](https://www.cnblogs.com/schblog/p/12450893.html)
+
+[【经验总结】 fisheye 3.1.5 安装、破解全过程 图文教程（2.0以上版本均可成功！）](https://www.cnblogs.com/amosli/p/3427990.html)
+
+[Atlassian系列产品及插件激活方法[JIRA8.0+]](https://zhile.io/2018/12/20/atlassian-license-crack.html)
+
+
+
+管理员登录：
+
+http://localhost:8060/admin/login-default.do
+
+密码：123456
+
+
+
+产品试用版使用的是 HSQLDB，不建议在生产环境使用，因为可能应用停止的时候可能导致数据丢失。
+
+
+
+
+
+# {OpenGrok
+
+不支持指定默认分支，只支持直接索引当前的分支。不支持多分支。
+
+[How to setup OpenGrok · oracle/opengrok Wiki](https://github.com/oracle/opengrok/wiki/How-to-setup-OpenGrok)
+
+[How do I handle git branches in OpenGrok? - Stack Overflow](https://stackoverflow.com/questions/1891653/how-do-i-handle-git-branches-in-opengrok)
+
+
+
+# hound-search
+
+缺点：项目的原始开发者已经不在 Etsy 工作了，所以这个项目目前基本没有人维护。
+
+
+
+https://github.com/hound-search/hound
+
+只支持对代码库进行索引，不支持对纯文件夹进行索引。
+
+
+
+## 安装
+
+[The Go Programming Language](https://golang.org/)
+
+[curl 的用法指南 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2019/09/curl-reference.html)
+
+> curl -O https://www.example.com/foo/bar.html
+>
+> 上面命令将服务器回应保存成文件，文件名为 bar.html
+
+[每天一个linux命令（28）：tar命令](https://www.cnblogs.com/peida/archive/2012/11/30/2795656.html)
+
+[Go Module详细使用教程，包管理不在难](https://cloud.tencent.com/developer/article/1593734)
+
+[从零开始搭建Go语言开发环境](https://www.liwenzhou.com/posts/Go/install_go_dev/)
+
+[如何在Ubuntu 18.04上安装Go并设置本地编程环境](https://www.howtoing.com/how-to-install-go-and-set-up-a-local-programming-environment-on-ubuntu-18-04)
+
+
+
+[Deepin - 开启SSH服务](https://blog.csdn.net/nangy2514/article/details/93300160)
+
+[SSH原理与运用（一）：远程登录](https://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html)
+
+
+
+
+
+## 索引私有仓库
+
+需要使用 SSH。
+
+当没有配置 SSH Key 的时候，Clone 的选项中只有 HTTPS，添加了 SSH Key 之后，就会出现 SSH 的选项。
+
+[Using SSH keys to secure Git operations - Atlassian Documentation](https://confluence.atlassian.com/bitbucketserver0511/using-bitbucket-server/controlling-access-to-code/using-ssh-keys-to-secure-git-operations?utm_campaign=in-app-help&utm_medium=in-app-help&utm_source=stash)
+
+[Creating SSH keys - Atlassian Documentation](https://confluence.atlassian.com/bitbucketserver0511/using-bitbucket-server/controlling-access-to-code/using-ssh-keys-to-secure-git-operations/creating-ssh-keys)
+
+[SSH user keys for personal use - Atlassian Documentation](https://confluence.atlassian.com/bitbucketserver0511/using-bitbucket-server/controlling-access-to-code/using-ssh-keys-to-secure-git-operations/ssh-user-keys-for-personal-use)
+
+
+
+## 多分支
+
+目前官方版本的不支持多分支索引。
+
+[Add ability to use custom branch from vcs config for git by pboutes · Pull Request #275 · hound-search/hound](https://github.com/hound-search/hound/pull/275)【这是一个支持多分支的 PR，不过还没有被合并入主分支】
+
+
+
+
+
+## 避坑
+
+把 hound-search 的 config.json 的格式写错了，结果导致服务一起起不来。报 Unexpected EOF。
+
+
+
+# 参考资料
+
+1. [{OpenGrok](https://oracle.github.io/opengrok/)
+2. [SourceGraph 在线工具](https://sourcegraph.com/search)
+3. [FishEye - Atlassian](https://www.atlassian.com/zh/software/fisheye)
+4. [hound-search](https://github.com/hound-search/hound)
+5. [Announcing Hound: A Lightning Fast Code Search Tool - Code as Craft](https://codeascraft.com/2015/01/27/announcing-hound-a-lightning-fast-code-search-tool/)【讲了 hound-search 的来源，并指出 hound-search 的优点是方便部署。】
