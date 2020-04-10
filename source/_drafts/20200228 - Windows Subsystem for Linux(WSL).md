@@ -32,7 +32,7 @@ C:\Users\[username]\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows
 
 顺便，了解一下 Java 8 之后的收费策略：[Oracle如何对JDK收费](https://zhuanlan.zhihu.com/p/64731331)
 
-
+如果想要免费，只能用 Java8u202 之前的版本。
 
 查看 Linux 版本：
 
