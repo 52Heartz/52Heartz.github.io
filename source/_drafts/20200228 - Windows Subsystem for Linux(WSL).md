@@ -49,7 +49,7 @@ Codename:       bionic
 
 [Java Archive Downloads - Java SE 8](https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html)
 
-[8 Server JRE 8 Installation for Linux Platforms](https://docs.oracle.com/javase/8/docs/technotes/guides/install/linux_server_jre.html)
+[8 Server JRE 8 Installation for Linux Platforms](https://docs.oracle.com/javase/8/docs/technotes/guides/install/linux_server_jre.html)【Linux 安装 Java 步骤】
 
 
 
@@ -60,6 +60,12 @@ wget https://download.oracle.com/otn/java/jdk/8u202-b08/1961070e4c9b4e26a04e7f5a
 ```
 
 这个链接是在浏览器中下载然后拷贝过来的链接，现在 Oracle 做了限制，一个链接好像有一定的有效期，不能无限次重复使用。
+
+
+
+```
+tar zxvf server-jre-8uversion-linux-x64.tar.gz
+```
 
 
 
@@ -94,6 +100,8 @@ source ~/.bashrc
 
 
 
+
+
 从最末尾开始查看日志：
 
 ```
@@ -113,8 +121,6 @@ less XXX.log
 `u`：前翻半页
 
 `d`：后翻半页
-
-
 
 
 
@@ -265,6 +271,11 @@ java.lang.NoClassDefFoundError: Could not initialize class com.fr.general.cardta
 
 修改 Tomcat 使用的 JRE，修改 `setclasspath.sh`
 
+```
+export JAVA_HOME='/home/peng/jdk1.8.0_202'
+export JRE_HOME='/home/peng/jdk1.8.0_202/jre'
+```
+
 
 
 Java 8 的官方文档
@@ -285,8 +296,25 @@ Server JRE 在 JRE 的基础上加入了一些 JDK 中的东西。
 
 
 
+
+
+# 卸载 WSL
+
+
+
+参考资料
+
+1. [Windows 10 子系统Linux重启(不重启Win10)_weixin_34293911的博客-CSDN博客_windows linux子系统重启](https://blog.csdn.net/weixin_34293911/article/details/89592278)
+2. [Overview - Process Hacker](https://wj32.org/processhacker/index.php)
+3. [WSL is unkillable without rebooting (permissions/security problems for admins) · Issue #1086 · microsoft/WSL](https://github.com/microsoft/WSL/issues/1086)
+4. [windows 10 - WSL Ubuntu hangs, how to restart? - Stack Overflow](https://stackoverflow.com/questions/48407070/wsl-ubuntu-hangs-how-to-restart)
+
+
+
 # 参考资料
 
 1. [Frequently Asked Questions (FAQ) | Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/faq#what-is-windows-subsystem-for-linux-wsl)
 2. [Windows 10生产力提升之WSL实践](https://iyaozhen.com/windows10-wsl-ubuntu.html)
 3. [WSL 使用指南——03 避免的坑](https://zhuanlan.zhihu.com/p/34885187)
+4. [为什么 Windows 的 Linux 子系统的文件同步和 Windows 不是实时的？ - 知乎](https://www.zhihu.com/question/318832524)
+5. [在Windows下将文件放到Ubuntu子系统的目录下，为何在bash下看不见？ - 知乎](https://www.zhihu.com/question/62177866)

@@ -43,6 +43,40 @@ http://localhost:8060/admin/login-default.do
 
 
 
+在添加仓库时，使用 SSH Key 作为验证手段时，收到错误：
+
+```
+Error testing connection.
+Error talking to repository:
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ WARNING: UNPROTECTED PRIVATE KEY FILE! @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions for 'D:\\Program Files\\FishEyeData\\data\\auth\\plugin-report-csv-encode' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "D:\\Program Files\\FishEyeData\\data\\auth\\plugin-report-csv-encode": bad permissions
+git@code.fineres.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+at com.atlassian.fisheye.git.GitScmConfig.testConnection(GitScmConfig.java:120)
+at com.cenqua.fisheye.RepositoryConfig.testConnection(RepositoryConfig.java:390)
+at com.atlassian.fisheye.spi.admin.impl.DefaultRepositoryAdminService.testConnectionFor(DefaultRepositoryAdminService.java:964)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+
+Connection failed.
+```
+
+需要很麻烦的处理。另外，我在报错中说的文件夹中也没有找到对应的私钥文件，要保存之后D:\\Program Files\\FishEyeData\\data\\auth\\plugin-report-csv-encode 这个文件才会出现。
+
+[真正解决 windows OpenSSH WARNING: UNPROTECTED PRIVATE KEY FILE!_运维_joshua2011的专栏-CSDN博客](https://blog.csdn.net/joshua2011/article/details/90208741)
+
+
+
 
 
 # {OpenGrok

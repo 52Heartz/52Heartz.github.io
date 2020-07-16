@@ -45,6 +45,10 @@ ThreadLocal 中有一个内部类 `ThreadLocalMap`
 
 
 
+# InheritableThreadLocal
+
+ThreadLocal 的一个子类，用于子线程获取父线程的 ThreadLocal 变量。
+
 
 
 
@@ -59,3 +63,4 @@ ThreadLocal 中有一个内部类 `ThreadLocalMap`
 4. [【死磕 Java 并发】—– 深入分析 ThreadLocal - 芋道源码](http://www.iocoder.cn/JUC/sike/ThreadLocal/)
 5. [ThreadLocal 内存泄露的实例分析](https://blog.xiaohansong.com/ThreadLocal-leak-analyze.html)
 6. [深入分析 ThreadLocal 内存泄漏问题](https://blog.xiaohansong.com/ThreadLocal-memory-leak.html)
+7. [Java多线程父子线程关系 多线程中篇（六） - noteless - 博客园](https://www.cnblogs.com/noteless/p/10371174.html)
