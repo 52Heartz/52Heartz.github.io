@@ -10,9 +10,11 @@ urlname: java-hash-map
 
 
 
+# HashMap
 
+## JDK 1.8
 
-# JDK 8 中的 HashMap 的 Javadoc 解读
+### JDK 8 中的 HashMap 的 Javadoc 解读
 
 > Hash table based implementation of the `Map` interface. This implementation provides all of the optional map operations, and permits `null` values and the `null` key. (The `HashMap` class is roughly equivalent to `Hashtable`, except that it is unsynchronized and permits nulls.) This class makes no guarantees as to the order of the map; in particular, it does not guarantee that the order will remain constant over time.
 
@@ -48,7 +50,7 @@ HashMap 是 Map 接口的一个实现类，基于哈希表实现。这个实现�
 
 
 
-## Implementation notes
+### Implementation notes
 
 > This map usually acts as a binned (bucketed) hash table, but when bins get too large, they are transformed into bins of TreeNodes, each structured similarly to those in java.util.TreeMap. Most methods try to use normal bins, but relay to TreeNode methods when applicable (simply by checking instanceof a node).  Bins of TreeNodes may be traversed and used like any others, but additionally support faster lookup when overpopulated. However, since the vast majority of bins in normal use are not overpopulated, checking for existence of tree bins may be delayed in the course of table methods.
 
@@ -93,6 +95,28 @@ HashMap 是 Map 接口的一个实现类，基于哈希表实现。这个实现�
 
 
 
+### put() 方法分析
+
+```java
+public V put(K key, V value) {
+    return putVal(hash(key), key, value, false, true);
+}
+```
+
+```java
+static final int hash(Object key) {
+    int h;
+    return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+}
+```
+
+
+
+#### hash() 方法
+
+hash 方法实际上是取 key 的 hashCode 的后 n 位。如果不同 key 的后 n 位相同，而前 32-n 位不同，按理说是应该分配到不同的桶中的，但是如果不做处理，这些元素就全都会分配到同一个桶中。导致单个桶中的元素数量过多，会导致查询速度很慢。
+
+如果把前 16 位和后 16 位结合起来做一个运算，就可以起到扰动的效果。
 
 
 
@@ -100,8 +124,9 @@ HashMap 是 Map 接口的一个实现类，基于哈希表实现。这个实现�
 
 
 
+[JDK 源码中 HashMap 的 hash 方法原理是什么？ - 知乎](https://www.zhihu.com/question/20733617)
 
-
+[全网把Map中的hash()分析的最透彻的文章，别无二家。-HollisChuang's Blog](https://www.hollischuang.com/archives/2091)
 
 
 
@@ -215,6 +240,18 @@ public class CounterDemo1 {
 [iterator - Java HashMap add new entry while iterating - Stack Overflow](https://stackoverflow.com/questions/27753184/java-hashmap-add-new-entry-while-iterating)
 
 [HashMap中ConcurrentModificationException异常解读 - yehx - 博客园](https://www.cnblogs.com/handsomeye/p/9138908.html)
+
+
+
+## 多线程并发问题
+
+[探究HashMap线性不安全（二）——链表成环的详细过程 - 比脚更长的路 - 博客园](https://www.cnblogs.com/lonelyJay/p/9726187.html)
+
+[谈谈HashMap线程不安全的体现 - God is a Coder.. - OSCHINA](https://my.oschina.net/hosee/blog/673521)
+
+[浅谈HashMap与线程安全 (JDK1.8) - Captain_Eason - 博客园](https://www.cnblogs.com/yucfeng/p/9035308.html)
+
+[HashMap为何从头插入改为尾插入 - 掘金](https://juejin.im/post/5ba457a25188255c7b168023#heading-9)
 
 
 
@@ -347,7 +384,7 @@ Javadoc：[ConcurrentHashMap (Java Platform SE 8 )](https://docs.oracle.com/java
 4. [HashMap完全解读 -Hollis](https://www.hollischuang.com/archives/82)
 5. [有关 HashMap 面试会问的一切](https://mp.weixin.qq.com/s/Zjh17yXJ692_uzcKYSbQ_g)
 6. [天下无难试之HashMap面试刁难大全](https://zhuanlan.zhihu.com/p/32355676)
-7. [HashMap? ConcurrentHashMap? 相信看完这篇没人能难住你！ - crossoverJie的博客](https://crossoverjie.top/2018/07/23/java-senior/ConcurrentHashMap/)
+7. [HashMap? ConcurrentHashMap? 相信看完这篇没人能难住你！ - crossoverJie的博客](https://crossoverjie.top/2018/07/23/java-senior/ConcurrentHashMap/)【JDK 1.7、JDK 1.8】
 8. [【java集合】HashMap常见面试题 - CSDN博客](https://blog.csdn.net/u012512634/article/details/72735183)
 9. [HashMap 相关面试题及其解答](https://www.jianshu.com/p/75adf47958a7)
 10. [HashMap面试题：90%的人回答不上来](https://www.jianshu.com/p/7af5bb1b57e2)
@@ -355,24 +392,20 @@ Javadoc：[ConcurrentHashMap (Java Platform SE 8 )](https://docs.oracle.com/java
 12. [JDK7与JDK8中HashMap的实现 - 开源中国](https://my.oschina.net/hosee/blog/618953)
 13. [全网把Map中的hash()分析的最透彻的文章，别无二家 - Hollis的博客](https://www.hollischuang.com/archives/2091)【确实写的很好！】
 14. [红黑树 - 开源中国](https://my.oschina.net/hosee/blog/618828)
-15. [谈谈HashMap线程不安全的体现 - ImportNew](http://www.importnew.com/22011.html)
 16. [HashMap的loadFactor为什么是0.75？](https://www.jianshu.com/p/64f6de3ffcc1)【分析的很深入了，还分析了数学原理】
 17. [HashMap初始容量与负载因子设置如何影响HashMap性能](https://blog.csdn.net/woaiwym/article/details/80622804)
-18. [Java 8系列之重新认识HashMap - 美团技术团队](https://tech.meituan.com/2016/06/24/java-hashmap.html)
+18. [Java 8系列之重新认识HashMap - 知乎](https://zhuanlan.zhihu.com/p/21673805)
 19. [【不做标题党，只做纯干货】HashMap在Jdk1.7和1.8中的实现](http://www.yuanrengu.com/index.php/20181106.html)
 20. [老生常谈，HashMap的死循环 - 占小狼的简书](https://www.jianshu.com/p/1e9cf0ac07f4)
 21. [HashMap的实现与优化](http://www.importnew.com/21294.html)
+21. [HashMap实现原理及源码分析 - dreamcatcher-cx - 博客园](https://www.cnblogs.com/chengxiao/p/6059914.html)【JDK 1.7】
 
 
 
 ## ConcurrentHashMap相关
 
 1. [ConcurrentHashMap (Java Platform SE 8 )](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentHashMap.html)
-2. [ConcurrentHashMap原理分析 - ImportNew](http://www.importnew.com/16142.html)
-3. [面试题： HashMap与ConcurrentHashMap - 开源中国](https://my.oschina.net/keyven/blog/1831704)
-4. [关于Java面试，你应该准备这些知识点](https://www.jianshu.com/p/1b2f63a45476)
-5. [HashMap、HashTable、ConcurrentHashMap的原理与区别](http://www.yuanrengu.com/index.php/2017-01-17.html)
-6. [十大Java ConcurrentHashMap面试问题与解 - CSDN](https://blog.csdn.net/qq_41790443/article/details/79727915)
-7. [Java数据结构笔试面试知识集合之ConcurrentHashMap](https://zhuanlan.zhihu.com/p/35853397)
-8. [这几道Java集合框架面试题在面试中几乎必问](https://segmentfault.com/a/1190000016127895)
+2. [ConcurrentHashMap实现原理及源码分析 - dreamcatcher-cx - 博客园](https://www.cnblogs.com/chengxiao/p/6842045.html)【JDK 1.7】
+3. [Java数据结构笔试面试知识集合之ConcurrentHashMap](https://zhuanlan.zhihu.com/p/35853397)
+4. [这几道Java集合框架面试题在面试中几乎必问](https://segmentfault.com/a/1190000016127895)
 

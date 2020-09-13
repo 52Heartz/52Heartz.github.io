@@ -218,6 +218,8 @@ ALTER TABLE 表名 MODIFY test_desc longtext;
 -- 把 test_desc 列改为 longtext 类型
 ```
 
+
+
 #### 删除列
 
 用法：
@@ -242,6 +244,8 @@ ALTER TABLE 表名 CHANGE old_column_name new column_name datatype [default expr
 
 `CHANGE` 关键字比 `MODIFY` 关键字多了修改列名的功能。
 
+
+
 ### 删除表
 
 ```sql
@@ -249,6 +253,8 @@ DROP TABLE 表名;
 ```
 
 删除表会使表结构、表对象、表里的所有数据、表所有相关的索引、约束也被删除。
+
+
 
 ### TRUNCATE 表
 
@@ -263,4 +269,186 @@ TRUNCATE 表名;
 
 
 ## 数据库约束
+
+
+
+
+
+# 不同数据库 JDBC
+
+
+
+## JDBC 连接
+
+MySQL：[MySQL :: Connectors and APIs Manual :: 3.5.2 Connection URL Syntax](https://dev.mysql.com/doc/connectors/en/connector-j-reference-jdbc-url-format.html)
+
+MySQL 的数据连接可以不指定数据库，而且可以访问多个数据库，只要在 SQL 中加上数据库名称即可。
+
+
+
+PotstgreSql：[Connecting to the Database](https://jdbc.postgresql.org/documentation/head/connect.html)
+
+Postgre 必须指定一个数据库，而且一个数据连接只能访问一个数据库。
+
+> Actually, the even more general syntax
+>
+> ```
+> database.schema.table
+> ```
+>
+> can be used too, but at present this is just for *pro forma* compliance with the SQL standard. If you write a database name, it must be the same as the database you are connected to.
+
+PG 中，SQL 也可以带上数据库名称，但是带了也必须和连接的数据库名称一样。只是为了形式上符合SQL标准。
+
+[postgresql - The infamous java.sql.SQLException: No suitable driver found - Stack Overflow](https://stackoverflow.com/questions/1911253/the-infamous-java-sql-sqlexception-no-suitable-driver-found)
+
+
+
+
+
+## DatabaseMetaData#getTableTypes
+
+PostgreSQL：
+
+```
++--------------------+
+|     TABLE_TYPE     |
++--------------------+
+| FOREIGN TABLE      |
+| INDEX              |
+| MATERIALIZED VIEW  |
+| SEQUENCE           |
+| SYSTEM INDEX       |
+| SYSTEM TABLE       |
+| SYSTEM TOAST INDEX |
+| SYSTEM TOAST TABLE |
+| SYSTEM VIEW        |
+| TABLE              |
+| TEMPORARY INDEX    |
+| TEMPORARY SEQUENCE |
+| TEMPORARY TABLE    |
+| TEMPORARY VIEW     |
+| TYPE               |
+| VIEW               |
++--------------------+
+```
+
+
+
+MySQL：
+
+```
++------------------+
+|    TABLE_TYPE    |
++------------------+
+| LOCAL TEMPORARY  |
+| SYSTEM TABLE     |
+| SYSTEM VIEW      |
+| TABLE            |
+| VIEW             |
++------------------+
+```
+
+
+
+
+
+## DatabaseMetaData#getTables
+
+
+
+### MySQL
+
+
+
+```
++-----------+-------------+------------------------+------------+---------+
+| TABLE_CAT | TABLE_SCHEM |       TABLE_NAME       | TABLE_TYPE | REMARKS |
++-----------+-------------+------------------------+------------+---------+
+| fr_ds     | NULL        | dw_business_package    | TABLE      |         |
+| fr_ds     | NULL        | dw_business_table      | TABLE      |         |
+| fr_ds     | NULL        | dw_task_view1          | VIEW       |         |
++-----------+-------------+------------------------+------------+---------+
+```
+
+
+
+
+
+PS：
+
+MySQL 的 information_schema 中的表的类型都是 `SYSTEM VIEW`
+
+```java
+metaData.getTables("information_schema", null, null, new String[]{"TABLE", "VIEW"})
+```
+
+这个是什么都获取不到的。
+
+
+
+### PostgreSQL
+
+```
++-----------+-------------+----------------------+------------+---------+
+| table_cat | table_schem |      table_name      | table_type | remarks |
++-----------+-------------+----------------------+------------+---------+
+| (unknown) | public      | dim_agent_list       | TABLE      | NULL    |
+| (unknown) | public      | dw_example           | TABLE      | NULL    |
+| (unknown) | public      | maxlength            | TABLE      | NULL    |
+| (unknown) | public      | peng-test2           | TABLE      | NULL    |
+| (unknown) | public      | peng_test_1          | TABLE      | NULL    |
+| (unknown) | public      | person               | TABLE      | NULL    |
+| (unknown) | public      | sales                | TABLE      | NULL    |
+| (unknown) | public      | sales_col            | TABLE      | NULL    |
+| (unknown) | public      | tab100w              | TABLE      | NULL    |
+| (unknown) | public      | tab10w               | TABLE      | NULL    |
+| (unknown) | public      | tab1w                | TABLE      | NULL    |
+| (unknown) | public      | table_name           | TABLE      | NULL    |
+| (unknown) | public      | table_name1          | TABLE      | NULL    |
+| (unknown) | public      | table_name1_1_prt_1  | TABLE      | NULL    |
+| (unknown) | public      | table_name1_1_prt_2  | TABLE      | NULL    |
+| (unknown) | public      | table_name1_1_prt_3  | TABLE      | NULL    |
+| (unknown) | public      | table_name1_1_prt_4  | TABLE      | NULL    |
+| (unknown) | public      | test_kafka           | TABLE      | NULL    |
++-----------+-------------+----------------------+------------+---------+
+```
+
+
+
+PS：分区表也会和普通表一样被列出来。
+
+
+
+
+
+## ResultSetMetaData#getColumnLabel 和 getColumnName
+
+MySQL：
+
+如果 select 的是原始列，那么 `getColumnName()` 是原始列名，如果 SQL 中有 `AS`，那么 `getColumnLabel()` 就是 AS 指定的名称。
+
+如果 select 的是计算出来的列，比如 `count(*)`，那么两个方法返回结果一样。
+
+
+
+
+
+
+
+# 其他
+
+## Utilities
+
+[htorun/dbtableprinter: Database Table Printer - a Java utility class to print a pretty table to standard out.](https://github.com/htorun/dbtableprinter)
+
+[Aliuken/JavaDbUtilities: Get metadata from a database using JDBC](https://github.com/Aliuken/JavaDbUtilities)
+
+
+
+
+
+# 参考资料
+
+
 

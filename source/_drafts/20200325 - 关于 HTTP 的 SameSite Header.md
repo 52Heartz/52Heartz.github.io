@@ -12,13 +12,15 @@ urlname: about=http-samesite-header
 
 <!-- more -->
 
-
-
-
-
 > 临时解决
 >
 > chrome浏览器地址栏输入 chrome://flags/ ,然后搜索框搜索 sameSite, 将SameSite by default cookies 设置为disable
+
+
+
+
+
+
 
 
 

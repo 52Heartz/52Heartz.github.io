@@ -39,6 +39,12 @@ A：`volatile` 只能保证线程可见性，而且其规则是有所限制的�
 
 
 
+
+
+
+
+
+
 # 参考资料
 
 1. [再有人问你volatile是什么，把这篇文章也发给他。-HollisChuang's Blog](https://www.hollischuang.com/archives/2673)
@@ -47,3 +53,4 @@ A：`volatile` 只能保证线程可见性，而且其规则是有所限制的�
 4. [【死磕Java并发】-深入分析volatile的实现原理 - Java 技术驿站-Java 技术驿站](http://cmsblogs.com/?p=2092)
 5. [【死磕Java并发】-----Java内存模型之happens-before - chenssy - 博客园](https://www.cnblogs.com/chenssy/p/6393321.html)
 6. [happens-before俗解 | 并发编程网 – ifeve.com](http://ifeve.com/easy-happens-before/)
+7. [Java的多线程机制系列：不得不提的volatile及指令重排序(happen-before) - wq3435 - 博客园](https://www.cnblogs.com/wq3435/p/6220751.html)
