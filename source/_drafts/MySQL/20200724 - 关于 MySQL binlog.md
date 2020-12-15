@@ -69,10 +69,6 @@ show VARIABLES LIKE "log_bin";
 
 
 
-
-
-
-
 ## 日志格式
 
 > The format of the events recorded in the binary log is dependent on the binary logging format. Three format types are supported: row-based logging, statement-based logging and mixed-base logging. The binary logging format used depends on the MySQL version. For general descriptions of the logging formats, see [Section 5.4.4.1, “Binary Logging Formats”](https://dev.mysql.com/doc/refman/8.0/en/binary-log-formats.html). For detailed information about the format of the binary log, see [MySQL Internals: The Binary Log](https://dev.mysql.com/doc/internals/en/binary-log.html).
@@ -123,6 +119,8 @@ show VARIABLES LIKE "log_bin";
 
 
 
+
+
 # 常用操作
 
 ## 查看 MySQL 的 binlog 配置
@@ -133,7 +131,29 @@ show variables like'log_bin%';
 
 
 
-## 查看
+## binlog 过期时间
+
+查看 binlog 过期时间：
+
+```
+show variables like 'expire_logs_days';
+```
+
+或
+
+```
+select @@global.expire_logs_days;
+```
+
+
+
+`expire_logs_days` 为 `0` 表示 binlog 永不过期。
+
+[Mysql设置binlog过期时间并自动删除 - Ruthless - 博客园](https://www.cnblogs.com/linjiqin/p/11520052.html)
+
+
+
+## 查看当前所有的 binlog 文件及文件大小
 
 ```sql
 show binary logs;
@@ -141,15 +161,47 @@ show binary logs;
 
 
 
-## 过期时间
+## 查看 binlog 内容
+
+查看第一个 binlog 文件的内容：
 
 ```
-expire_logs_days=0
+SHOW BINLOG EVENTS;
 ```
 
-表示 binlog 永不过期。
 
-[Mysql设置binlog过期时间并自动删除 - Ruthless - 博客园](https://www.cnblogs.com/linjiqin/p/11520052.html)
+
+查看指定 binlog 文件的内容：
+
+```
+SHOW BINLOG EVENTS IN 'mysql-bin.000001';
+```
+
+
+
+指定起始 binlog position：
+
+```
+SHOW BINLOG EVENTS IN 'mysql-bin.000001' FROM 123;
+```
+
+这种情况下，指定的 binlog position 必须是一个有效的 binlog position，那么会报错：
+
+```
+Error when executing command SHOW BINLOG EVENTS: Wrong offset or I/O error
+```
+
+
+
+指定行号 offset 和 limit：
+
+```
+SHOW BINLOG EVENTS IN 'mysql-bin.000001' LIMIT 0, 100;
+```
+
+
+
+[MySQL :: MySQL 8.0 Reference Manual :: 13.7.7.2 SHOW BINLOG EVENTS Statement](https://dev.mysql.com/doc/refman/8.0/en/show-binlog-events.html)
 
 
 
@@ -158,8 +210,6 @@ expire_logs_days=0
 ## 修改配置文件没有用
 
 修改 `my.ini` 的时候，注意，配置文件会被 `[mysqld]`、`[mysql]` 和 `[client]` 分为三段，要把关于 binlog 的配置写到 `[mysqld]` 对应的范围内。
-
-
 
 
 
@@ -175,15 +225,63 @@ expire_logs_days=0
 
 
 
+# 关于 table_id
+
+[MySQL table_id原理及风险分析 - yuyue2014 - 博客园](https://www.cnblogs.com/yuyue2014/p/3721172.html)
+
+[MySQL Binlog中TABLE ID源码分析-king_wangheng-ChinaUnix博客](http://blog.chinaunix.net/uid-26896862-id-3329896.html)
+
+[mysql TableMap id递增问题 - agapple - ITeye博客](https://www.iteye.com/blog/agapple-1797061)
+
+[【MySQL】再说MySQL中的 table_id _ITPUB博客](http://blog.itpub.net/22664653/viewspace-1158547/)
+
+[hate mysql because you love her deeply » Blog Archive » 淘宝物流MySQL slave数据丢失详细原因](https://web.archive.org/web/20130921165829/http://hatemysql.com/2012/11/23/淘宝物流mysql-slave数据丢失详细原因/)
+
+[物流MySQL slave复制数据部分丢失问题 | hickey](https://web.archive.org/web/20130920122424/http://hickey.in/?p=146)
+
+
+
+
+
+# 同步相关
+
+WRITE_ROW_EVENT、UPDATE_ROWS_EVENT、UPDATE_ROWS_EVENT 等事件之前总是有一个 TABLE_MAP_EVENT，两个 event 通过一个 table_id 关联。
+
+
+
+# EventLength
+
+MySQL 中规定 eventLength 的类型为 4 字节：https://dev.mysql.com/doc/internals/en/event-header-fields.html，意味着 一个 event 最大长度不能超过 $2^{32}-1$。
+
 
 
 # 事件类型
 
-[MySQL binlog中的事件类型 - iVictor - 博客园](https://www.cnblogs.com/ivictor/p/5780617.html)
+[MySQL :: MySQL Internals Manual :: 14.9.4.3 Binlog Event Type](https://dev.mysql.com/doc/internals/en/binlog-event-type.html)
+
+[MySQL binlog中的事件类型 - iVictor - 博客园](https://www.cnblogs.com/ivictor/p/5780617.html)【MySQL 5.7】
 
 
 
+### 常见事件类型
 
+#### QUERY_EVENT
+
+[MySQL :: MySQL Internals Manual :: 14.9.4.9 QUERY_EVENT](https://dev.mysql.com/doc/internals/en/query-event.html)
+
+
+
+#### TABLE_MAP
+
+
+
+#### UPDATE_ROWS_EVENT
+
+既包含行 update 之前的值，也包含 update 之后的值。
+
+
+
+[MySQL Binlog解析 - 朱小厮的博客](https://www.honeypps.com/backend/mysql-binlog-analysis/)
 
 
 
@@ -197,6 +295,36 @@ expire_logs_days=0
 
 
 
+# 相关的项目
+
+
+
+京东的开源组件 binlake，官方介绍为：
+
+> 一个集群化的数据库Binary Log管理、采集和分发系统，并且透明集成JMQ和Kafka等消息分发和订阅系统。
+
+https://github.com/jd-tiger/binlake
+
+
+
+
+
+# 问题
+
+## TableMapEvent 顺序的一个问题
+
+WriteRowEvent 等事件前边都是一个 TableMapEvent，但是是不是严格按照这个顺序的呢？
+
+
+
+> **TABLE_MAP_EVENT**
+>
+> Used for row-based binary logging. This event precedes each row operation event. It maps a table definition to a number, where the table definition consists of database and table names and column definitions. The purpose of this event is to enable replication when a table has different definitions on the master and slave. Row operation events that belong to the same transaction may be grouped into sequences, in which case each such sequence of events begins with a sequence of `TABLE_MAP_EVENT` events: one per table used by events in the sequence.
+>
+> [MySQL :: MySQL Internals Manual :: 20.6 Event Meanings](https://dev.mysql.com/doc/internals/en/event-meanings.html)
+
+TODO：上边的这段没太看懂
+
 
 
 
@@ -208,3 +336,5 @@ expire_logs_days=0
 3. [MySQL :: MySQL 5.7 Reference Manual :: 16.1.6.4 Binary Logging Options and Variables](https://dev.mysql.com/doc/refman/5.7/en/replication-options-binary-log.html)
 4. [maxwell实时同步mysql中binlog - kris12 - 博客园](https://www.cnblogs.com/shengyang17/p/12069175.html)
 5. [腾讯工程师带你深入解析 MySQL binlog - 知乎](https://zhuanlan.zhihu.com/p/33504555)
+6. [MySQL Binlog(十一)——MySQL binlog event解析实例 | Win-Man's Blog](https://win-man.github.io/2019/12/07/MySQL Binlog(十一)——MySQL binlog event解析实例/)
+7. [MySql-Binlog协议详解-报文篇 - 无毁的湖光-Al的个人空间 - OSCHINA - 中文开源技术交流社区](https://my.oschina.net/alchemystar/blog/850467)

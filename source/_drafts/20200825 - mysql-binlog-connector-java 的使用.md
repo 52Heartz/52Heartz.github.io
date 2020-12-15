@@ -20,10 +20,6 @@ https://github.com/osheroff/mysql-binlog-connector-java（维护中）
 
 
 
-
-
-
-
 # 读取实时数据
 
 ## Tapping into MySQL replication stream
@@ -79,6 +75,32 @@ client.setBinlogPosition();
 
 
 
+# 错误
+
+## 1
+
+```
+2020-10-26 23:56:59.898  WARN 23080 --- [-localhost:3306] c.g.shyiko.mysql.binlog.BinaryLogClient  : com.fr.finetube.core.work.step.component.pipeline.binlog.PipelineTaskBinlogListener@4b655caa choked on Event{header=EventHeaderV4{timestamp=1603727819000, eventType=EXT_WRITE_ROWS, serverId=123, headerLength=19, dataLength=44, nextPosition=17168452, flags=0}, data=WriteRowsEventData{tableId=161, includedColumns={0, 1}, rows=[
+    [2020-10-26 23:56:59, test]
+]}}
+
+java.lang.NullPointerException: null
+	at com.fr.finetube.core.work.step.component.pipeline.binlog.PipelineTaskBinlogListener.generateEvents(PipelineTaskBinlogListener.java:249)
+	at com.fr.finetube.core.work.step.component.pipeline.binlog.PipelineTaskBinlogListener.handleInsert(PipelineTaskBinlogListener.java:206)
+	at com.fr.finetube.core.work.step.component.pipeline.binlog.PipelineTaskBinlogListener.onEvent(PipelineTaskBinlogListener.java:178)
+	at com.github.shyiko.mysql.binlog.BinaryLogClient.notifyEventListeners(BinaryLogClient.java:1158)
+	at com.github.shyiko.mysql.binlog.BinaryLogClient.listenForEventPackets(BinaryLogClient.java:1005)
+	at com.github.shyiko.mysql.binlog.BinaryLogClient.connectWithTimeout(BinaryLogClient.java:517)
+	at com.github.shyiko.mysql.binlog.BinaryLogClient.access$1100(BinaryLogClient.java:90)
+	at com.github.shyiko.mysql.binlog.BinaryLogClient$7.run(BinaryLogClient.java:881)
+	at java.lang.Thread.run(Thread.java:748)
+```
+
+
+
+
+
+
+
 # 参考资料
 
-1. 

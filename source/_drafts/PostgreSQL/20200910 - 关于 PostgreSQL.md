@@ -34,6 +34,14 @@ urlname: about-postgresql-database
 
 
 
+# 大小写敏感
+
+> All **identifiers** (including column names) that are not double-quoted are folded to lower case in PostgreSQL. Column names that were created with double-quotes and thereby retained upper-case letters (and/or other syntax violations) have to be double-quoted for the rest of their life: (`"first_Name"`)
+
+[sql - Are PostgreSQL column names case-sensitive? - Stack Overflow](https://stackoverflow.com/questions/20878932/are-postgresql-column-names-case-sensitive)
+
+
+
 
 
 # 参考资料
