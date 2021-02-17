@@ -370,6 +370,14 @@ Javadoc：[ConcurrentHashMap (Java Platform SE 8 )](https://docs.oracle.com/java
 
 
 
+## 关于保存 null 的问题
+
+[Java中的ConcurrentHashMap中为什么不能存储null? - 知乎](https://www.zhihu.com/question/379146959)
+
+
+
+
+
 
 
 

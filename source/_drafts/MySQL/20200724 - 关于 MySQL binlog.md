@@ -14,6 +14,14 @@ urlname: about-mysql-binlog
 
 
 
+# 官方文档
+
+[MySQL :: MySQL 8.0 Reference Manual :: 5.4.4 The Binary Log](https://dev.mysql.com/doc/refman/8.0/en/binary-log.html)
+
+[MySQL :: MySQL Internals Manual :: 14.10.2 ROWS_EVENT](https://dev.mysql.com/doc/internals/en/rows-event.html#packet-Binlog::RowsEventExtraData)
+
+
+
 # 备份
 
 - 热备：服务器不停机备份

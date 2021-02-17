@@ -16,6 +16,24 @@ urlname: about-javascript-call-and-apply
 
 
 
+
+
+
+
+# 注意
+
+1. apply 的第二个参数必须传数组，不然会报错：
+
+   ```
+   TypeError: CreateListFromArrayLike called on non-object
+   ```
+
+   
+
+
+
+
+
 # 参考资料
 
 1. [Function.prototype.apply() - JavaScript | MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)

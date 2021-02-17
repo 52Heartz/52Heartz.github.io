@@ -102,5 +102,29 @@ java.lang.NullPointerException: null
 
 
 
+## A slave with the same server_uuid/server_id as this slave
+
+```
+A slave with the same server_uuid/server_id as this slave has connected to the master...
+```
+
+[Same Error Code · Issue #208 · shyiko/mysql-binlog-connector-java](https://github.com/shyiko/mysql-binlog-connector-java/issues/208)
+
+[SocketException when running multiple BinaryLogClient processes · Issue #185 · shyiko/mysql-binlog-connector-java](https://github.com/shyiko/mysql-binlog-connector-java/issues/185)
+
+[Blocking Mode Problem · Issue #121 · shyiko/mysql-binlog-connector-java](https://github.com/shyiko/mysql-binlog-connector-java/issues/121#issuecomment-252321233)
+
+
+
+每个 BinlogClient 都相当于是一个 MySQL slave，每个 slave server 都必须有一个唯一的 id，所以需要调用 `client.setServerId()` 为每一个 BinaryLogClient 设定 serverId，不然多个 client 之间会相互干扰。
+
+
+
+
+
+
+
+
+
 # 参考资料
 

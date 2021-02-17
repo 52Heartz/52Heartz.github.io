@@ -36,3 +36,4 @@ list.stream().parallel().mapToInt(Integer::intValue).toArray();
 2. [流操作使用不当可能让你的代码变慢5倍](http://www.importnew.com/17262.html)
 3. [深入理解Java函数式编程和Streams API - CarpenterLee](https://github.com/CarpenterLee/JavaLambdaInternals)
 4. [Java8中Stream原理分析 - S.L's Blog | S.L Blog](https://elsef.com/2019/09/16/Java8中Stream的原理分析/)
+5. [Java8-Collect收集Stream - Ryan.Miao - 博客园](https://www.cnblogs.com/woshimrf/p/java8-collect-stream.html)

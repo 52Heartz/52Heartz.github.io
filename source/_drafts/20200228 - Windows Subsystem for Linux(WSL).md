@@ -12,6 +12,25 @@ urlname: Windows-Subsystem-for-Linux
 
 <!-- more -->
 
+
+
+# 查看 WSL 的版本
+
+```
+wsl --list --verbose
+```
+
+示例输出：
+
+```
+  NAME      STATE           VERSION
+* Ubuntu    Stopped         1
+```
+
+
+
+
+
 # WSL 存储的位置
 
 以 ubuntu 为例，文件都存储在：
