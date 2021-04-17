@@ -28,17 +28,23 @@ urlname: about-postgresql-database
 
 
 
-
-
-
-
-
-
 # 大小写敏感
 
 > All **identifiers** (including column names) that are not double-quoted are folded to lower case in PostgreSQL. Column names that were created with double-quotes and thereby retained upper-case letters (and/or other syntax violations) have to be double-quoted for the rest of their life: (`"first_Name"`)
 
 [sql - Are PostgreSQL column names case-sensitive? - Stack Overflow](https://stackoverflow.com/questions/20878932/are-postgresql-column-names-case-sensitive)
+
+
+
+
+
+# pg_cancel_backend 和 pg_terminate_backend
+
+[PostgreSQL: Documentation: 9.3: System Administration Functions](https://www.postgresql.org/docs/9.3/functions-admin.html)
+
+除管理员之外，一个用户只能对自己执行的查询调用 pg_cancel_backend 和 pg_terminate_backend。
+
+`pg_cancel_backend` and `pg_terminate_backend` 分别对执行的进程发送 SIGINT(2) 和 SIGTERM(15) 信号。
 
 
 

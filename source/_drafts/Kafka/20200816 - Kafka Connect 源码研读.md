@@ -20,14 +20,6 @@ Kafka 源代码地址：[apache/kafka: Mirror of Apache Kafka](https://github.co
 
 
 
-
-
-
-
-
-
-
-
 # 整体把握
 
 
@@ -40,6 +32,9 @@ Kafka 源代码地址：[apache/kafka: Mirror of Apache Kafka](https://github.co
 
 ```java
 // connect/runtime/src/main/java/org/apache/kafka/connect/runtime/WorkerSinkTask.java
+// 启动任务就是在这里启动的
+// 启动任务之后，也是在当前线程中执行一次又一次地从 Kafka 取数据然后进行处理的操作
+// 在 iteration() 方法中会对从 Kafka 取到的数据进行处理，然后调用 SinkTask 的 put 方法
 @Override
 public void execute() {
     initializeAndStart();
@@ -55,12 +50,6 @@ public void execute() {
 
 
 Kafka Connector 中，开发者编写的都是 SinkTask，Kafka Connect 框架中使用一个 `WorkerSinkTask` 把 SinkTask 包裹起来，`WorkerSinkTask` 中持有一个 Kafka Consumer。在 WorkerSinkTask 中执行 poll() 获取数据并交给 SinkTask 处理。
-
-
-
-
-
-
 
 
 
@@ -104,8 +93,6 @@ public Worker(
 > 链接：https://www.zhihu.com/question/23212914/answer/245992718
 > 来源：知乎
 > 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-
-
 
 
 
@@ -157,10 +144,6 @@ private void deliverMessages() {
     }
 }
 ```
-
-
-
-
 
 
 

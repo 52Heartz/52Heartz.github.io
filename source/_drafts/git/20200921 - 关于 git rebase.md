@@ -57,14 +57,7 @@ git push -u -f self
 
 
 
-
-
-
-
-
-
-
-
 # 参考资料
 
 1. [Git - Rebasing](https://git-scm.com/book/en/v2/Git-Branching-Rebasing)
+2. [彻底搞懂 Git-Rebase - Jartto's blog](http://jartto.wang/2018/12/11/git-rebase/)

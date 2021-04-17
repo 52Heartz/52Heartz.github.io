@@ -330,6 +330,90 @@ Server JRE 在 JRE 的基础上加入了一些 JDK 中的东西。
 
 
 
+
+
+# 重启
+
+> WSL 子系统是基于 LxssManager 服务运行的。
+> 只需要将 LxssManager 重启即可。
+
+```
+net stop LxssManager
+net start LxssManager
+```
+
+或
+
+```
+Restart-Service LxssManager
+```
+
+
+
+# 网络问题
+
+
+
+## 宿主机访问问题
+
+[WSL2 中访问宿主机 Windows 的代理 - ZingLix Blog](https://zinglix.xyz/2020/04/18/wsl2-proxy/)
+
+[WSL2 Set static ip? · Issue #4210 · microsoft/WSL](https://github.com/microsoft/WSL/issues/4210)
+
+
+
+WSL2 获取宿主机 IP：
+
+```sh
+cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }'
+```
+
+
+
+获取自身 IP
+
+```sh
+hostname -I | awk '{print $1}'
+```
+
+
+
+
+
+## 重置网络
+
+
+
+[wsl how to configure hyper-v network adapter - Google 搜索](https://www.google.com/search?q=wsl+how+to+configure+hyper-v+network+adapter&newwindow=1&biw=2560&bih=1368&sxsrf=ALeKk00BBMNbqI-gjufzNVhCJ4xVs228dA%3A1616387982536&ei=jh9YYMmcIMGDoASiiYKADw&oq=wsl+how+to+configure+hyper-v+network+adapter&gs_lcp=Cgdnd3Mtd2l6EAM6BwgjELADECdQ7hVY7i9ghTFoA3AAeACAAZcEiAGsHZIBCTItMi44LjAuMZgBAKABAaoBB2d3cy13aXrIAQHAAQE&sclient=gws-wiz&ved=0ahUKEwjJm5K8isPvAhXBAYgKHaKEAPA4ChDh1QMIDQ&uact=5)
+
+[allow us to specify hyper-v virtual switch network adapter for wsl2 · Issue #5835 · microsoft/WSL](https://github.com/microsoft/WSL/issues/5835)
+
+[No network connection in any distribution under WSL 2 · Issue #5336 · microsoft/WSL](https://github.com/microsoft/WSL/issues/5336)
+
+[No internet connection on WSL Ubuntu (Windows Subsystem for Linux) - Stack Overflow](https://stackoverflow.com/questions/62314789/no-internet-connection-on-wsl-ubuntu-windows-subsystem-for-linux)
+
+
+
+重启之后，WSL 网卡（hyper-v network adapter）会自动重置，就可以上网了。
+
+
+
+
+
+## apt update 无法使用问题
+
+[WSL ubuntu 20.04 0% [Waiting for headers] Connection failed - Google 搜索](https://www.google.com/search?q=WSL+ubuntu+20.04+0%+[Waiting+for+headers]+Connection+failed&newwindow=1&sxsrf=ALeKk03iu-2scS_ohJ01bdkYE4YQcM9Reg:1616389399274&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwjni9nfj8PvAhWRBKYKHd-XCHcQpwV6BAgLECk&biw=2560&bih=1370)
+
+[Cannot Update Ubuntu or access internet · Issue #5831 · microsoft/WSL](https://github.com/microsoft/WSL/issues/5831)
+
+[Github cloning error in wsl2 (driver MTU) · Issue #4253 · microsoft/WSL](https://github.com/microsoft/WSL/issues/4253)
+
+
+
+[wsl2 etc/netplan empty - Google 搜索](https://www.google.com/search?q=wsl2+etc%2Fnetplan+empty&newwindow=1&biw=2560&bih=1370&sxsrf=ALeKk02KBzUWlozVYuGYxK9s3Fku2XdvwQ%3A1616389942958&ei=NidYYPr5Oc6br7wP8a27qA8&oq=wsl2+etc%2Fnetplan+empty&gs_lcp=Cgdnd3Mtd2l6EANQyfxfWMn8X2CH_l9oAXAAeACAAaUDiAGlA5IBAzQtMZgBAKABAaoBB2d3cy13aXrAAQE&sclient=gws-wiz&ved=0ahUKEwj67PjikcPvAhXOzYsBHfHWDvUQ4dUDCA0&uact=5)
+
+
+
 # 参考资料
 
 1. [Frequently Asked Questions (FAQ) | Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/faq#what-is-windows-subsystem-for-linux-wsl)

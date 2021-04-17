@@ -161,6 +161,18 @@ select @@global.expire_logs_days;
 
 
 
+### 查看 binlog 文件大小限制
+
+```
+show variables like 'max_binlog_size';
+```
+
+
+
+
+
+
+
 ## 查看当前所有的 binlog 文件及文件大小
 
 ```sql
@@ -290,6 +302,20 @@ MySQL 中规定 eventLength 的类型为 4 字节：https://dev.mysql.com/doc/in
 
 
 [MySQL Binlog解析 - 朱小厮的博客](https://www.honeypps.com/backend/mysql-binlog-analysis/)
+
+
+
+# Slave 连接上 BINLOG 之后对 Master 的影响
+
+
+
+1. [MySQL 5.6 Replication Performance | The Oracle MySQL Blog](https://blogs.oracle.com/mysql/mysql-56-replication-performance)
+2. [How expensive is MySQL Replication for the Master - Percona Database Performance Blog](https://www.percona.com/blog/2010/01/16/how-expensive-is-mysql-replication-for-the-master/)
+3. [MySQL :: Can mysql replication slower down Master Server performance?](https://forums.mysql.com/read.php?26,578422,578422)
+4. [MySQL Slave Scaling (and more). At Booking.com, we have very wide… | by Jean-François Gagné | Booking.com Infrastructure | Medium](https://medium.com/booking-com-infrastructure/mysql-slave-scaling-and-more-a09d88713a20)
+5. [Does MySQL Replication hamper the performance of my DB? - Database Administrators Stack Exchange](https://dba.stackexchange.com/questions/37280/does-mysql-replication-hamper-the-performance-of-my-db)
+
+
 
 
 

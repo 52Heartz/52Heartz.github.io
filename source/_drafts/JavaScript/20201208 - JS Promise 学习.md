@@ -34,18 +34,6 @@ urlname: about-js-promise
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 # 参考资料
 
 1. [使用 Promise - JavaScript | MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Using_promises) | [Using Promises - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)【使用说明】

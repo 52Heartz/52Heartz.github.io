@@ -138,6 +138,73 @@ debezium 中说，Connector 对于任务状态和 offset 的保存是没有感�
 
 
 
+
+
+# 进阶
+
+[Putting Apache Kafka To Use: A Practical Guide To Building an Event Streaming Platform (Part 1) | Confluent](https://www.confluent.io/blog/event-streaming-platform-1/)
+
+[Kafka Connect Architecture — Confluent Documentation](https://docs.confluent.io/platform/current/connect/design.html)
+
+
+
+# Kafka Connect Internal
+
+`WorkerSinkTask` 中的 `deliverMessages`
+
+```java
+private void deliverMessages() {
+    // Finally, deliver this batch to the sink
+    try {
+        // Since we reuse the messageBatch buffer, ensure we give the task its own copy
+        log.trace("{} Delivering batch of {} messages to task", this, messageBatch.size());
+        long start = time.milliseconds();
+        // Peng: 此处转交 SinkTask 处理
+        task.put(new ArrayList<>(messageBatch));
+        // if errors raised from the operator were swallowed by the task implementation, an
+        // exception needs to be thrown to kill the task indicating the tolerance was exceeded
+        if (retryWithToleranceOperator.failed() && !retryWithToleranceOperator.withinToleranceLimits()) {
+            throw new ConnectException("Tolerance exceeded in error handler",
+                                       retryWithToleranceOperator.error());
+        }
+        recordBatch(messageBatch.size());
+        sinkTaskMetricsGroup.recordPut(time.milliseconds() - start);
+        currentOffsets.putAll(origOffsets);
+        messageBatch.clear();
+        // If we had paused all consumer topic partitions to try to redeliver data, then we should resume any that
+        // the task had not explicitly paused
+        if (pausedForRedelivery) {
+            if (!shouldPause())
+                resumeAll();
+            pausedForRedelivery = false;
+        }
+    } catch (RetriableException e) {
+        log.error("{} RetriableException from SinkTask:", this, e);
+        // If we're retrying a previous batch, make sure we've paused all topic partitions so we don't get new data,
+        // but will still be able to poll in order to handle user-requested timeouts, keep group membership, etc.
+        pausedForRedelivery = true;
+        pauseAll();
+        // Let this exit normally, the batch will be reprocessed on the next loop.
+    } catch (Throwable t) {
+        log.error("{} Task threw an uncaught and unrecoverable exception. Task is being killed and will not "
+                  + "recover until manually restarted. Error: {}", this, t.getMessage(), t);
+        throw new ConnectException("Exiting WorkerSinkTask due to unrecoverable exception.", t);
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 # 参考资料
 
 1. [Kafka Connect — Confluent Platform 5.5.1](https://docs.confluent.io/current/connect/index.html)
