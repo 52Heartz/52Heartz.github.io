@@ -31,7 +31,7 @@ SELECT @@global.max_allowed_packet, @@session.max_allowed_packet;
 设置
 
 ```sql
-SET global max_allowed_packet = 16*1024*1024;
+SET global max_allowed_packet = 16 * 1024 * 1024;
 ```
 
 

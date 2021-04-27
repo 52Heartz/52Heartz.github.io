@@ -570,6 +570,43 @@ create table table_name21
 
 
 
+# 最佳实践
+
+[Best Practices Summary | Tanzu Greenplum Docs](https://gpdb.docs.pivotal.io/6-15/best_practices/summary.html)
+
+
+
+
+
+# 找出数据库中的追加优化表
+
+[pg_appendonly | Tanzu Greenplum Docs](https://gpdb.docs.pivotal.io/6-15/ref_guide/system_catalogs/pg_appendonly.html)
+
+```sql
+-- 查看所有 AO 表
+SELECT b.nspname || '.' || a.relname as TableName,
+       case c.columnstore
+           when 'f' then 'Row Orientation'
+           when 't' then 'Column Orientation'
+           end                       as TableStorageType,
+       case COALESCE(c.compresstype, '')
+           when '' then 'No Compression'
+           else c.compresstype
+           end                       as CompressionType
+FROM pg_class a,
+     pg_namespace b,
+     (select relid, segrelid, columnstore, compresstype
+      from pg_appendonly) c
+WHERE b.oid = a.relnamespace
+  and a.oid = c.relid;
+```
+
+
+
+
+
+
+
 # UNIQUE 相关
 
 测试9：主键和唯一索引的冲突
@@ -867,6 +904,36 @@ where a.relation = b.oid
 [Inserting, Updating, and Deleting Data | Pivotal Greenplum Docs](https://gpdb.docs.pivotal.io/6-3/admin_guide/dml.html#topic11)
 
 [pg_stat_activity | Pivotal Greenplum Docs](https://gpdb.docs.pivotal.io/6-3/ref_guide/system_catalogs/pg_stat_activity.html)
+
+
+
+
+
+
+
+# 查询优化
+
+
+
+[Determining the Query Optimizer that is Used | Tanzu Greenplum Docs](https://gpdb.docs.pivotal.io/6-15/admin_guide/query/topics/query-piv-opt-fallback.html)
+
+[Query Profiling | Tanzu Greenplum Docs](https://gpdb.docs.pivotal.io/6-15/admin_guide/query/topics/query-profiling.html)
+
+
+
+## 开启 GPORCA 查询优化器
+
+[Enabling and Disabling GPORCA | Tanzu Greenplum Docs](https://gpdb.docs.pivotal.io/6-15/admin_guide/query/topics/query-piv-opt-enable.html#topic_pzr_3db_3r)
+
+通过 `ALTER DATABASE db_name SET OPTIMIZER = ON;` 这种方式开启时，不影响已经建立的连接，新建立的数据库连接会受到影响。
+
+
+
+# 常用命令
+
+## gpconfig
+
+使用 gpconfig 需要使用 gpadmin 用户
 
 
 

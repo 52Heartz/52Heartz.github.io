@@ -124,6 +124,14 @@ debezium 中说，Connector 对于任务状态和 offset 的保存是没有感�
 
 # Connector 示例
 
+## JDBC SourceConnector
+
+[JDBC Source Connector for Confluent Platform — Confluent Documentation](https://docs.confluent.io/kafka-connect-jdbc/current/source-connector/index.html#jdbc-source-connector-for-cp)
+
+
+
+
+
 ## Debezium MySQL CDC Connector
 
 [Debezium MySQL CDC Connector | Confluent Hub](https://www.confluent.io/hub/debezium/debezium-connector-mysql)
@@ -145,6 +153,10 @@ debezium 中说，Connector 对于任务状态和 offset 的保存是没有感�
 [Putting Apache Kafka To Use: A Practical Guide To Building an Event Streaming Platform (Part 1) | Confluent](https://www.confluent.io/blog/event-streaming-platform-1/)
 
 [Kafka Connect Architecture — Confluent Documentation](https://docs.confluent.io/platform/current/connect/design.html)
+
+[Kafka Connect Deep Dive – JDBC Source Connector | Confluent](https://www.confluent.io/blog/kafka-connect-deep-dive-jdbc-source-connector/)
+
+
 
 
 
