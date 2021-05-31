@@ -12,26 +12,18 @@ urlname: about-linux-find-command
 
 <!-- more -->
 
-
-
-
-
 ```sh
-
 -- 查找48天之前的文件
 find . -name "*" -type f -mtime +48 -exec stat  -c "%n %y" {} \;
 
-
 -- 查找一小时之前的文件
 find . -name "*" -type f -mmin +60 -exec stat  -c "%n %y" {} \;
-
 
 -- 删除1小时之前的文件
 find . -name "*" -type f -mmin +60 -delete
 
 -- 查找时间段之间的文件
 find . -newermt "2021-03-22 16:04:00" ! -newermt "2021-03-22 16:04:12" -exec stat  -c "%n %y" {} \;
-
 ```
 
 
@@ -46,9 +38,16 @@ find / -xdev -size +100M -exec ls -l {} \;
 
 
 
+## 查找大目录
 
 
 
+
+
+```sh
+# 查找当前目录下大小前 10 的目录
+du -sh * | sort -rh | head -10
+```
 
 
 
@@ -59,3 +58,4 @@ find / -xdev -size +100M -exec ls -l {} \;
 # 参考资料
 
 1. [bash - Find files based on modified date(specifying the exact hour) - Unix & Linux Stack Exchange](https://unix.stackexchange.com/questions/185897/find-files-based-on-modified-datespecifying-the-exact-hour)
+2. [How to Find Out Top Directories and Files (Disk Space) in Linux](https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/)

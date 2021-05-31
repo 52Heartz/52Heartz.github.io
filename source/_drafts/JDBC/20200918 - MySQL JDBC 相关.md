@@ -274,7 +274,22 @@ TRUNCATE 表名;
 
 
 
-# 不同数据库 JDBC
+
+
+# 驱动相关
+
+[MySQL :: MySQL Connector/J 5.1 Developer Guide :: 2 Connector/J Versions, and the MySQL and Java Versions They Require](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-versions.html)
+
+MySQL JDBC 驱动中对于版本适配信息有所规定：
+
+| Connector/J version | JDBC version       | MySQL Server version | JRE Required     | JDK Required for Compilation      | Status                                     |
+| :------------------ | :----------------- | :------------------- | :--------------- | :-------------------------------- | :----------------------------------------- |
+| 5.1                 | 3.0, 4.0, 4.1, 4.2 | 5.61, 5.71, 8.01     | JRE 5 or higher1 | JDK 5.0 AND JDK 8.0 or higher2, 3 | General availability                       |
+| 8.0                 | 4.2                | 5.6, 5.7, 8.0        | JRE 8 or higher  | JDK 8.0 or higher2                | General availability. Recommended version. |
+
+
+
+
 
 
 

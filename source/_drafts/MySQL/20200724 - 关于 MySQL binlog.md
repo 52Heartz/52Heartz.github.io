@@ -18,6 +18,8 @@ urlname: about-mysql-binlog
 
 [MySQL :: MySQL 8.0 Reference Manual :: 5.4.4 The Binary Log](https://dev.mysql.com/doc/refman/8.0/en/binary-log.html)
 
+[MySQL :: MySQL Replication :: 2.6.4 Binary Logging Options and Variables](https://dev.mysql.com/doc/mysql-replication-excerpt/5.7/en/replication-options-binary-log.html)
+
 [MySQL :: MySQL Internals Manual :: 14.10.2 ROWS_EVENT](https://dev.mysql.com/doc/internals/en/rows-event.html#packet-Binlog::RowsEventExtraData)
 
 
@@ -93,7 +95,7 @@ show VARIABLES LIKE "log_bin";
 
 
 
-# binlog 常用参数
+# binlog 配置参数
 
 ## binlog_rows_query_log_events
 
@@ -123,9 +125,21 @@ show VARIABLES LIKE "log_bin";
 
 
 
+这个参数是 5.6 中引入的，那么在之前的版本中，没有这个参数时，数据库怎么处理这种情况呢？
+
+> Found the answer here, it does log all columns (in MySQL, and by logical extension MariaDB) before this parameter was supported:
+>
+> https://dev.mysql.com/doc/refman/5.6/en/replication-options-binary-log.html#sysvar_binlog_row_image quoted below:
+>
+> "The default value is full. In MySQL 5.5 and earlier, full row images are always used for both before images and after images."
+>
+> ——[Replication and Binary Log System Variables - MariaDB Knowledge Base](https://mariadb.com/kb/en/replication-and-binary-log-system-variables/#binlog_row_image)
+
+
+
+
+
 # Relay log
-
-
 
 
 

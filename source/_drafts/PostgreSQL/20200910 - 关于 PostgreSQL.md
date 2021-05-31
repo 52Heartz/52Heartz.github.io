@@ -16,6 +16,20 @@ urlname: about-postgresql-database
 
 
 
+# 概念
+
+[PostgreSQL: Documentation: 8.3: Concepts](https://www.postgresql.org/docs/8.3/tutorial-concepts.html)
+
+Postgresql 中的很多系统表中的列名都和 Postgresql 中的概念有关，所以了解 Postgresql 定义的概念是很有必要的。比如，在 Postgresql 中，表叫做 `关系`。`关系` 其实是一种偏学术的表达。
+
+> Relation is essentially a mathematical term for *table*.
+
+
+
+
+
+
+
 
 
 # 模式
@@ -45,6 +59,14 @@ urlname: about-postgresql-database
 除管理员之外，一个用户只能对自己执行的查询调用 pg_cancel_backend 和 pg_terminate_backend。
 
 `pg_cancel_backend` and `pg_terminate_backend` 分别对执行的进程发送 SIGINT(2) 和 SIGTERM(15) 信号。
+
+
+
+
+
+
+
+
 
 
 

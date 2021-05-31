@@ -407,6 +407,11 @@ Javadoc：[ConcurrentHashMap (Java Platform SE 8 )](https://docs.oracle.com/java
 20. [老生常谈，HashMap的死循环 - 占小狼的简书](https://www.jianshu.com/p/1e9cf0ac07f4)
 21. [HashMap的实现与优化](http://www.importnew.com/21294.html)
 21. [HashMap实现原理及源码分析 - dreamcatcher-cx - 博客园](https://www.cnblogs.com/chengxiao/p/6059914.html)【JDK 1.7】
+22. [阿里面试题：为什么Map桶中个数超过8才转为红黑树](https://mp.weixin.qq.com/s/QgkBRoADcO8Wgj0dHCc9dw)
+
+
+
+
 
 
 

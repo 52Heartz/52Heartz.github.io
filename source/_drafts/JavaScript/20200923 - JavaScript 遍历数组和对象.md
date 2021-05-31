@@ -16,8 +16,6 @@ urlname: about-javascript-iteration
 
 # 遍历数组
 
-
-
 ## for...of
 
 [for...of - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)
@@ -77,21 +75,7 @@ key:p2, obj[key]:2
 
 
 
-
-
-
-
-
-
-
-
-
-
 # 对象转数组
-
-
-
-
 
 
 

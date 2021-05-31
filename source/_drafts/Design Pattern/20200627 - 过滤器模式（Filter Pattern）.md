@@ -14,10 +14,6 @@ urlname: about-filter-pattern
 
 
 
-
-
-
-
 # 参考资料
 
 1. [Design Patterns - Filter Pattern - Tutorialspoint](https://www.tutorialspoint.com/design_pattern/filter_pattern.htm)| [过滤器模式 | 菜鸟教程](https://www.runoob.com/design-pattern/filter-pattern.html)

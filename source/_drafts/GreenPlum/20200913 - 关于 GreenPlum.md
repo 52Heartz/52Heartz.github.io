@@ -937,10 +937,6 @@ where a.relation = b.oid
 
 
 
-# Routine Vacuuming
-
-[PostgreSQL: Documentation: 9.6: Routine Vacuuming](https://www.postgresql.org/docs/9.6/routine-vacuuming.html)
-
 
 
 # GreenPlum 连接相关
