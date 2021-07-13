@@ -12,19 +12,11 @@ urlname: about-java-out-of-memory-error
 
 <!-- more -->
 
-
-
-
-
 # 不同类型的报错
 
 
 
 ## java.lang.OutOfMemoryError: GC overhead limit exceeded
-
-
-
-
 
 
 
@@ -94,6 +86,16 @@ PS Old Generation
 
 
 ## 查找最耗内存的对象
+
+
+
+
+
+## 生成内存 dump 文件
+
+```
+jmap -dump:format=b,file=/data/jvm_heap_dump_202101011230.hprof <pid>
+```
 
 
 

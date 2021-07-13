@@ -576,8 +576,6 @@ create table table_name21
 
 
 
-
-
 # 找出数据库中的追加优化表
 
 [pg_appendonly | Tanzu Greenplum Docs](https://gpdb.docs.pivotal.io/6-15/ref_guide/system_catalogs/pg_appendonly.html)

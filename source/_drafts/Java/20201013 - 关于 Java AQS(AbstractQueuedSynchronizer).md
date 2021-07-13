@@ -16,10 +16,6 @@ urlname: about-java-aqs-AbstractQueuedSynchronizer
 
 
 
-
-
-
-
 # 参考资料
 
 1. [一行一行源码分析清楚AbstractQueuedSynchronizer_Javadoop](https://www.javadoop.com/post/AbstractQueuedSynchronizer)

@@ -355,6 +355,12 @@ https://github.com/jd-tiger/binlake
 
 
 
+# MySQL 进阶
+
+[Identifying useful info from MySQL row-based binary logs](https://www.percona.com/blog/2015/01/20/identifying-useful-information-mysql-row-based-binary-logs/)【2015-01-20】
+
+
+
 
 
 # 问题

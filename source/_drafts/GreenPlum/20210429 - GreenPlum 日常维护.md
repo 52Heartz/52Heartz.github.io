@@ -65,5 +65,5 @@ gpload
 # 参考资料
 
 1. [PostgreSQL: Documentation: 9.5: Routine Vacuuming](https://www.postgresql.org/docs/9.5/routine-vacuuming.html)
-2. [Pivotal Greenplum: Life in a Vacuum by Howard Goldberg – Greenplum Database](https://greenplum.org/pivotal-greenplum-vacuum-howard-goldberg/)
+2. [Pivotal Greenplum: Life in a Vacuum by Howard Goldberg – Greenplum Database](https://greenplum.org/pivotal-greenplum-vacuum-howard-goldberg/)【GreenPlum 官方网站关于表膨胀和系统表膨胀的文章】
 3. [Understanding of Bloat and VACUUM in PostgreSQL - Percona Database Performance Blog](https://www.percona.com/blog/2018/08/06/basic-understanding-bloat-vacuum-postgresql-mvcc/)
